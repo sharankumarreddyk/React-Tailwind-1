@@ -1,9 +1,11 @@
 import { useState } from 'react';
+import i1 from "../../assets/i1.png";
+import i2 from "../../assets/i2.png";
 
 const Slider = () => {
     const slides = [
       {
-        src: "src/assets/i1.png",
+        src: i1,
         services: [
           {
             id: 1,
@@ -40,7 +42,7 @@ const Slider = () => {
         ],
       },
       {
-        src: "src/assets/i2.png",
+        src: i2,
         services: [], // Add services if needed for additional slides
       },
     ];
