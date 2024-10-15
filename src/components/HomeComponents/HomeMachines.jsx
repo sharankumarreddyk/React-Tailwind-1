@@ -1,4 +1,5 @@
 import React from 'react';
+import img1 from "../../assets/img1.jpg";
 
 function HomeMachines() {
   return (
@@ -16,7 +17,7 @@ function HomeMachines() {
         <div className="flex gap-1 mb-4">
           <div className="h-fit">
             <img
-              src="src/assets/img1.jpg"
+              src={img1}
               alt="Supercooling System"
               className="md:h-28 md:w-48 h-28 w-32 object-cover rounded-md border-2 border-blue-950"
             />
