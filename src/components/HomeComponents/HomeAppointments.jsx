@@ -6,7 +6,7 @@ const HomeAppointments = () => {
     <div className="p-6">
       <h2 className="text-2xl font-bold sm:px-2 mb-4">Appointments</h2>
       <div className="bg-gray-100 md:p-6 p-2 rounded-lg shadow-lg sm:overflow-x-auto xl:overflow-hidden overflow-hidden md:scale-100 scale-95 ">
-        <div className="sm:min-w-[1200px] grid sm:grid-cols-3 justify-around md:gap-16 gap-4 md:p-19 p-4">
+        <div className="sm:min-w-[1200px] w-full  grid sm:grid-cols-3 justify-around md:gap-16 gap-3 md:p-19 p-0">
           {/* Appointment 1 */}
 
           <Appointcard Product={"Venturi Dryer"} Name={"John Doe"} />
