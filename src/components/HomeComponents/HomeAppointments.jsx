@@ -3,24 +3,49 @@ import Appointcard from "./Appointcard";
 
 const HomeAppointments = () => {
   return (
-    <div className="p-6">
-      <h2 className="text-2xl font-bold sm:px-2 mb-4">Appointments</h2>
-      <div className="bg-gray-100 md:p-6  rounded-lg shadow-lg sm:overflow-x-auto xl:overflow-hidden overflow-hidden  ">
-        <div className="sm:min-w-[1200px] w-full  grid sm:grid-cols-3 justify-around md:gap-16 sm:gap-3 md:p-19 p-0 ">
-          {/* Appointment 1 */}
-
-          <Appointcard Product={"Venturi Dryer"} Name={"John Doe"} />
-
-          {/* Appointment 2 */}
-
-          <Appointcard Product={"Double Belt"} Name={"John Doe"} />
-
-          {/* Appointment 3 */}
-
-          <Appointcard Product={"Supercooling system"} Name={"John Doe"} />
+    <>
+      {/* Visible only on small screens */}
+      <div className="p-6 sm:hidden">
+        <h2 className="text-2xl font-bold mb-4">Appointments</h2>
+        <div className="bg-gray-100 md:p-6 rounded-lg shadow-lg overflow-hidden">
+          <div className="grid grid-cols-1 gap-6 p-4">
+            {/* Appointment 1 */}
+            <div className="flex justify-center">
+              <Appointcard Product={"Venturi Dryer"} Name={"John Doe"} />
+            </div>
+            {/* Appointment 2 */}
+            <div className="flex justify-center">
+              <Appointcard Product={"Double Belt"} Name={"John Doe"} />
+            </div>
+            {/* Appointment 3 */}
+            <div className="flex justify-center">
+              <Appointcard Product={"Supercooling system"} Name={"John Doe"} />
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+
+      {/* Visible only on medium and larger screens */}
+      <div className="p-6 hidden sm:block">
+        <h2 className="text-2xl font-bold mb-4">Appointments</h2>
+        <div className="bg-gray-100 sm:p-6 rounded-lg shadow-lg overflow-x-auto">
+          <div className="min-w-[1200px] grid sm:grid-cols-3 gap-3 md:gap-16 p-0">
+            {/* Appointment 1 */}
+            <div className="flex justify-center">
+              <Appointcard Product={"Venturi Dryer"} Name={"John Doe"} />
+            </div>
+            {/* Appointment 2 */}
+            <div className="flex justify-center">
+              <Appointcard Product={"Double Belt"} Name={"John Doe"} />
+            </div>
+            {/* Appointment 3 */}
+            <div className="flex justify-center">
+              <Appointcard Product={"Supercooling system"} Name={"John Doe"} />
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
   );
 };
 
