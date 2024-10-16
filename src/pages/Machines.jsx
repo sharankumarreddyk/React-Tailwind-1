@@ -1,14 +1,19 @@
 import React from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import MachineSlider from "../components/MachineComponents/Machineslider";
+import Parameters from "../components/MachineComponents/Parameters";
+
+import MachineImage from "../components/MachineComponents/Machineimage";
 
 function Machines() {
   return (
-    <>
+    <div className="bg-white">
       <Header />
-      <div>Machines</div>
+      <MachineSlider />
+      <MachineImage />
       <Footer />
-    </>
+    </div>
   );
 }
 
