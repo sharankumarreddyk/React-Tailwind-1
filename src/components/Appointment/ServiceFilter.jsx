@@ -22,7 +22,7 @@ const ServiceFilter = ({ onTabChange }) => {
 
     return (
         <div className="container mx-auto">
-            <div className="flex flex-col md:flex-row justify-between items-start mt-6">
+            <div className="flex flex-col md:flex-row justify-between items-center mt-6 space-x-6">
                 {/* Order Tabs */}
                 <div className="flex flex-col sm:flex-row justify-between mt-6 space-y-4 sm:space-y-0 w-full">
                     <div className="flex space-x-4 w-full">
@@ -48,7 +48,7 @@ const ServiceFilter = ({ onTabChange }) => {
                 </div>
 
                 {/* Filters (Date, Machine, Department) */}
-                <div className="grid grid-cols-2  sm:grid-cols-3 gap-2 text-[#0F1C40] mt-4 mr-4 w-full">
+                <div className="grid grid-cols-2  sm:grid-cols-3 lg:gap-8 gap-2 text-[#0F1C40]  mt-4 sm:pr-0 pr-8 w-full">
                     {['date', 'machine', 'department'].map((filter) => (
                         <div key={filter} className="relative sm:text-sm text-[13px] font items-center justify-between">
                             <button

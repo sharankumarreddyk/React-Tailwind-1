@@ -82,7 +82,7 @@ const ServiceBox = ({ activeService }) => {
         {services[activeService].map((service, index) => (
           <div
             key={index}
-            className={`grid grid-cols-1 mt-4 md:grid-cols-8 border-b cursor-pointer ${
+            className={`grid grid-cols-1 mt-4 lg:grid-cols-8 border-b cursor-pointer ${
               service.selected ? "bg-white" : ""
             }`}
             onClick={() => handleSelectService(index)}
@@ -156,6 +156,13 @@ const ServiceBox = ({ activeService }) => {
                 </div>
               </div>
             </div>
+
+
+
+
+
+
+
           </div>
         ))}
       </div>
