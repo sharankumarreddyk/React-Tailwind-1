@@ -5,7 +5,7 @@ const HomeAppointments = () => {
   return (
     <div className="p-6">
       <h2 className="text-2xl font-bold sm:px-2 mb-4">Appointments</h2>
-      <div className="bg-gray-100 md:p-6  rounded-lg shadow-lg sm:overflow-x-auto xl:overflow-hidden overflow-hidden md:scale-100 scale-95 ">
+      <div className="bg-gray-100 md:p-6 p-2 rounded-lg shadow-lg sm:overflow-x-auto xl:overflow-hidden overflow-hidden md:scale-100 scale-95 ">
         <div className="sm:min-w-[1200px] grid sm:grid-cols-3 justify-around md:gap-16 gap-4 md:p-19">
           {/* Appointment 1 */}
 

@@ -42,7 +42,7 @@ const UpcomingOrders = () => {
           </div>
 
           <div className="col-span-1 mt-2 lg:mt-0">
-            <Bill paymentmethod={"Card"} price={"200,000"} />
+            <Bill paymentmethod={"Card"} price={"200,000 Kr"} />
           </div>
         </div>
 
@@ -82,7 +82,7 @@ const UpcomingOrders = () => {
           </div>
 
           <div className="col-span-1 mt-2 lg:mt-0">
-            <Bill paymentmethod={"Card"} price={"136 898"} />
+            <Bill paymentmethod={"Card"} price={"136 898 Kr"} />
           </div>
         </div>
       </div>
