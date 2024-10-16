@@ -3,7 +3,7 @@ import React from 'react'
 function Appointcard({Product , Name }) {
   return (
     <>
-        <div className="w-full shadow-md rounded-t-lg rounded-b-md border-2 border-[#0F1C40] scale-[82%] sm:scale-100">
+        <div className="w-fit shadow-md rounded-t-lg rounded-b-md border-2 border-[#0F1C40] scale-[82%] sm:scale-100">
                         <div className="bg-[#0F1C40] text-white p-2 rounded-t-md ">
                             <div className="flex justify-between">
                                 <div>
