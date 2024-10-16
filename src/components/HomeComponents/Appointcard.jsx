@@ -2,7 +2,7 @@ import React from "react";
 
 function Appointcard({ Product, Name }) {
   return (
-    <div className="w-full shadow-md rounded-lg border-2 border-[#0F1C40] ">
+    <div className="w-full shadow-md rounded-t-xl rounded-b-lg border-2 border-[#0F1C40] ">
       <div className="bg-[#0F1C40] text-white p-4 rounded-t-lg">
         <div className="flex justify-between">
           <div>
