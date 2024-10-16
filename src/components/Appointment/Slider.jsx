@@ -172,7 +172,7 @@ const Slider = () => {
                     <div className="flex text-sm flex-col space-y-2">
                         {slides[0].services.map(service => (
                             <div className="flex items-stretch" key={service.id}>
-                                <div className={`w-1/4 font-bold ${service.id === 4 ? 'bg-[#C1C1C1] text-[#6A6A6A]' : 'bg-[#0F1C40] text-white'} p-2 rounded-l-md flex items-center justify-between`}>
+                                <div className={`sm:w-1/4 w-1/3 font-bold ${service.id === 4 ? 'bg-[#C1C1C1] text-[#6A6A6A]' : 'bg-[#0F1C40] text-white'} p-2 rounded-l-md flex items-center justify-between`}>
                                     Service {service.id}
                                     {service.id === 4 ? (
                                         <div className="flex items-center justify-center bg-[#6A6A6A] rounded-full p-1 ml-1 w-6 h-6">
@@ -188,7 +188,7 @@ const Slider = () => {
                                         </div>
                                     )}
                                 </div>
-                                <div className={`w-3/4 bg-gray-100 p-2 rounded-r-md flex items-center ${service.id === 4 ? 'text-red-650' : ''}`}>
+                                <div className={`w-3/4 text-xs bg-gray-100 p-2 rounded-r-md flex items-center ${service.id === 4 ? 'text-red-650' : ''}`}>
                                     It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
                                 </div>
                             </div>

@@ -144,7 +144,7 @@ const ServiceBox = ({ activeService }) => {
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 20 20"
                     fill="currentColor"
-                    className="size-6 mx-2"
+                    className="size-6 "
                   >
                     <path
                       fillRule="evenodd"
@@ -152,7 +152,7 @@ const ServiceBox = ({ activeService }) => {
                       clipRule="evenodd"
                     />
                   </svg>
-                  <span className="text-lg">Location</span>
+                  <span className="text-lg pl-4">Location</span>
                 </div>
               </div>
             </div>
