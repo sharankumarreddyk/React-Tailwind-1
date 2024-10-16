@@ -4,7 +4,7 @@ function Appointcard({Product , Name }) {
   return (
     <>
         <div className="w-full shadow-md rounded-t-lg rounded-b-md border-2 border-[#0F1C40] scale-[82%] sm:scale-100">
-                        <div className="bg-[#0F1C40] text-white p-4 rounded-t-md ">
+                        <div className="bg-[#0F1C40] text-white p-2 rounded-t-md ">
                             <div className="flex justify-between">
                                 <div>
                                     <p className="text-sm font-medium">Full Service</p>
@@ -15,7 +15,7 @@ function Appointcard({Product , Name }) {
                                 </div>
                             </div>
                         </div>
-                        <div className="p-4 bg-white rounded-b-lg">
+                        <div className="p-2 bg-white rounded-b-lg">
                             <div className="text-[#0F1C40] flex justify-between mb-2">
                                 <div>
                                     <p className="text-sm font-bold">Appointment</p>

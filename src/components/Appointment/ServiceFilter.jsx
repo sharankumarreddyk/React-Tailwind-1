@@ -24,8 +24,8 @@ const ServiceFilter = ({ onTabChange }) => {
         <div className="container mx-auto">
             <div className="flex flex-col md:flex-row justify-between items-start mt-6">
                 {/* Order Tabs */}
-                <div className="flex flex-col sm:flex-row justify-between mt-6 space-y-4 sm:space-y-0">
-                    <div className="flex sm:space-x-4 space-x-2">
+                <div className="flex flex-col sm:flex-row justify-between mt-6 space-y-4 sm:space-y-0 w-full">
+                    <div className="flex space-x-4 w-full">
                         <button
                             className={`sm:px-7 px-4 py-2 ${activeTab === 'active' ? 'bg-[#0F1C40] text-white font-bold' : 'bg-white text-[#0F1C40] border border-[#0F1C40]'} rounded-md sm:text-sm text-xs`}
                             onClick={() => showProducts('active')}
@@ -48,11 +48,11 @@ const ServiceFilter = ({ onTabChange }) => {
                 </div>
 
                 {/* Filters (Date, Machine, Department) */}
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 text-[#0F1C40] mt-6 ml-4">
+                <div className="grid grid-cols-2  sm:grid-cols-3 gap-2 text-[#0F1C40] mt-4 mr-4 w-full">
                     {['date', 'machine', 'department'].map((filter) => (
                         <div key={filter} className="relative sm:text-sm text-[13px] font items-center justify-between">
                             <button
-                                className="border border-[#0F1C40] px-1 py-2 rounded-md bg-white text-[#0F1C40] flex justify-between w-full"
+                                className="border border-[#0F1C40] scale-95 sm:scale-100 px-1 py-2 rounded-md bg-white text-[#0F1C40] flex justify-between w-full"
                                 onClick={() => toggleDropdown(filter)}
                             >
                                 {filter.charAt(0).toUpperCase() + filter.slice(1)} Filter
