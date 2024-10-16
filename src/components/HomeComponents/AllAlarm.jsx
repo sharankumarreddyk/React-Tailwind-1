@@ -171,7 +171,7 @@ const AllAlarm = () => {
           </label>
         </div>
         <p className="text-red-500 md:text-[8px] text-[6px] text-right">Manually turn off the alarm</p>
-        <p className="text-red-500 md:text-[8px] text-[5px] pl-[62%] mb-1">Overall Temp. {'>'} 100 degree °C</p>
+        <p className="text-red-500 md:text-[8px] text-[5px] pl-[55%] mb-1">Overall Temp. {'>'} 100 degree °C</p>
         <div className="flex w-full md:h-2 h-1.5 bg-gray-200 overflow-hidden mb-2">
           <div
             className="flex flex-col justify-center overflow-hidden bg-[#008E28] text-xs text-white text-center whitespace-nowrap"
@@ -192,7 +192,7 @@ const AllAlarm = () => {
         </div>
 
         <div className="flex justify-between w-full md:text-xs text-[8px] mb-2">
-          <div className="space-x-[63%] w-[65%]">
+          <div className="md:space-x-[70%] space-x-[63%] w-[65%]">
             <span className="text-black">0000 hrs</span>
             <span className="text-black">1830 hrs</span>
           </div>
