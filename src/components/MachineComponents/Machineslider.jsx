@@ -144,7 +144,7 @@ const MachineSlider = () => {
         </div>
       </div>
       <div>
-        <div className="flex ">
+        <div className="flex  ">
           <div
             id="image-container"
             ref={imageContainerRef} // Attach the ref here
@@ -164,7 +164,7 @@ const MachineSlider = () => {
             </div>
           </div>
 
-          <div className="py-44 justify-center items-center bg-gray-100 rounded-r-lg ">
+          <div className="py-44 justify-center items-center bg-gray-100 hidden sm:block  rounded-r-lg ">
             <button
               id="scroll-right"
               onClick={scrollRight} // Attach the scroll function
