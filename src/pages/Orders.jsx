@@ -1,4 +1,5 @@
-import Buttons from "../components/OrderComponents/buttons";
+import { useState } from "react";
+import Button from "../components/OrderComponents/buttons";
 import Dropdown from "../components/OrderComponents/Dropdown";
 import OrderItem from "../components/OrderComponents/OrderItems";
 import ProgressBar from "../components/OrderComponents/ProgressBar";
@@ -9,6 +10,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import i1 from "../assets/i1.png";
 import i2 from "../assets/i2.png";
+import Specs_button from "../components/OrderComponents/specs_buttons";
 
 const images = [
   { src: i1, alt: "Image 1" },
@@ -59,22 +61,40 @@ const steps = [
 ];
 
 const Orders = () => {
+  const [activeButton, setActiveButton] = useState("Description");
+
+  const handleButtonClick = (name) => {
+    setActiveButton(name);
+  };
+
   return (
     <>
       <div className="bg-white">
         <Header />
-        <div className=" mx-auto px-4 sm:px-6 mb-10 ">
+        <div className="mx-auto px-4 sm:px-6 mb-10">
           <div className="grid grid-cols-12 sm:mt-8 mt-2">
             <div className="col-span-12 sm:col-span-6 flex flex-row sm:flex-row">
-              <Buttons name="Active Orders" />
-              <Buttons name="Delivered Orders" />
-              <Buttons name="Cancelled Orders" />
+              <Button
+                name="Active Orders"
+                isActive={activeButton === "Active Orders"}
+                onClick={() => handleButtonClick("Active Orders")}
+              />
+              <Button
+                name="Delivered Orders"
+                isActive={activeButton === "Delivered Orders"}
+                onClick={() => handleButtonClick("Delivered Orders")}
+              />
+              <Button
+                name="Cancelled Orders"
+                isActive={activeButton === "Cancelled Orders"}
+                onClick={() => handleButtonClick("Cancelled Orders")}
+              />
             </div>
-            <div className="col-span-12 sm:col-span-6 space-x-2 md:space-x-4 flex flex-row  sm:flex-row sm:justify-end text-blue-950 mt-2 sm:mt-0">
+            <div className="col-span-12 sm:col-span-6 space-x-2 md:space-x-4 flex flex-row sm:flex-row sm:justify-end text-blue-950 mt-2 sm:mt-0">
               <Dropdown
                 buttonText="Date Filter"
                 options={["January 1, 2023", "January 2, 2023"]}
-                className="text-start"
+                isDateDropdown={true}
               />
               <Dropdown
                 buttonText="Machine Filter"
@@ -88,7 +108,7 @@ const Orders = () => {
           </div>
 
           <div className="grid grid-cols-12 sm:mt-5 mt-10">
-            <div className="col-span-12 lg:col-span-4 sm:px-8 shadow-xl ">
+            <div className="col-span-12 lg:col-span-5 lg:w-[547px] sm:px-8 shadow-xl">
               <OrderItem
                 imageSrc={i1}
                 productName="Product Pump"
@@ -118,7 +138,7 @@ const Orders = () => {
               />
             </div>
 
-            <div className="container px-4 sm:px-8 col-span-12 lg:col-span-8 w-full min-h-[200px]">
+            <div className="container px-4 sm:px-8 col-span-12 lg:col-span-7 w-full min-h-[200px]">
               <ProgressBar steps={steps} />
 
               <div className="mt-5">
@@ -135,10 +155,22 @@ const Orders = () => {
                 />
               </div>
               <div className="Product-Description">
-                <Buttons name="Description" />
-                <Buttons name="Specification" />
-                <Buttons name="Technical Information" />
-                <ParameterList />
+                <Specs_button
+                  name="Description"
+                  isActive={activeButton === "Description"}
+                  onClick={() => handleButtonClick("Description")}
+                />
+                <Specs_button
+                  name="Specification"
+                  isActive={activeButton === "Specification"}
+                  onClick={() => handleButtonClick("Specification")}
+                />
+                <Specs_button
+                  name="Technical Information"
+                  isActive={activeButton === "Technical Information"}
+                  onClick={() => handleButtonClick("Technical Information")}
+                />
+                {activeButton && <ParameterList activeButton={activeButton} />}
               </div>
             </div>
           </div>

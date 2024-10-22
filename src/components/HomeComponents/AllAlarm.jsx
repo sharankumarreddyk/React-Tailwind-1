@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import Dropdown from "../OrderComponents/Dropdown";
 
 const AllAlarm = () => {
   // Dropdown state
@@ -20,7 +21,10 @@ const AllAlarm = () => {
     <div className="col-span-3 p-4 px-4">
       <header className="flex justify-between items-center mb-4">
         <div className="flex justify-center md:space-x-2 items-center">
-          <h2 style={{ color: '#0F1C40' }} className="md:text-xl text-lg md:font-bold font-semibold">
+          <h2
+            style={{ color: "#0F1C40" }}
+            className="md:text-xl text-lg md:font-bold font-semibold"
+          >
             All Alarms
           </h2>
           <div className="flex items-center justify-start ml-2">
@@ -28,7 +32,7 @@ const AllAlarm = () => {
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
               fill="currentColor"
-              style={{ color: '#FF3334' }}
+              style={{ color: "#FF3334" }}
               className="md:size-6 size-5"
             >
               <path
@@ -37,42 +41,14 @@ const AllAlarm = () => {
                 clipRule="evenodd"
               />
             </svg>
-            <h3 style={{ color: '#FF3334' }} className="md:text-xl text-sm">
+            <h3 style={{ color: "#FF3334" }} className="md:text-xl text-sm">
               1 / 4
             </h3>
           </div>
         </div>
 
         <div className="flex md:space-x-6 space-x-1">
-          <div className="relative inline-block text-left">
-            <button
-              id="dropdownButton"
-              onClick={toggleDropdown}
-              className="inline-flex justify-between items-center p-1 md:px-2 rounded-md border-2 border-blue-950 text-sm font-medium text-[#0F1C40] hover:bg-gray-50 focus:outline-none overflow-hidden"
-            >
-              Today
-              <span className="material-symbols-outlined md:ml-4">expand_circle_down</span>
-            </button>
-
-            {isDropdownOpen && (
-              <div
-                id="dropdownMenu"
-                className="absolute right-0 mt-2 w-48 bg-white border border-blue-950 rounded-md shadow-lg"
-              >
-                <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                  Yesterday
-                </a>
-                <hr className="border border-gray-300" />
-                <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                  Option 2
-                </a>
-                <hr className="border border-gray-300" />
-                <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                  Option 3
-                </a>
-              </div>
-            )}
-          </div>
+          <Dropdown buttonText="Today" options={[]} isDateDropdown={true} />
 
           <button className="bg-[#0F1C40] justify-center text-xs font-semibold text-center items-center text-white p-1 px-3 rounded-md">
             Create Alarm
@@ -83,13 +59,17 @@ const AllAlarm = () => {
       {/* Alarm Cards */}
       <div className="bg-gray-100 p-6 rounded-lg shadow-lg">
         <div className="items-center md:mb-3">
-          <span className="text-[#0F1C40] md:text-xl font-bold">Venturi Dryer Alarm</span>
+          <span className="text-[#0F1C40] md:text-xl font-bold">
+            Venturi Dryer Alarm
+          </span>
         </div>
-        <p className="text-red-500 md:text-[8px] text-[5px] pl-[20%] mb-1">Overall Temp. {'>'} 100 degree °C</p>
+        <p className="text-red-500 md:text-[8px] text-[5px] pl-[20%] mb-1">
+          Overall Temp. {">"} 100 degree °C
+        </p>
         <div className="flex w-full md:h-2 h-1.5 bg-gray-200 overflow-hidden mb-2">
           <div
             className="flex flex-col justify-center overflow-hidden bg-[#008E28] text-xs text-white text-center whitespace-nowrap"
-            style={{ width: '20%' }}
+            style={{ width: "20%" }}
             role="progressbar"
             aria-valuenow="25"
             aria-valuemin="0"
@@ -97,7 +77,7 @@ const AllAlarm = () => {
           ></div>
           <div
             className="flex flex-col justify-center overflow-hidden text-xs text-white text-center whitespace-nowrap"
-            style={{ width: '21%', backgroundColor: '#FF3334' }}
+            style={{ width: "21%", backgroundColor: "#FF3334" }}
             role="progressbar"
             aria-valuenow="15"
             aria-valuemin="0"
@@ -105,7 +85,7 @@ const AllAlarm = () => {
           ></div>
           <div
             className="flex flex-col justify-center overflow-hidden bg-[#008E28] text-xs text-white text-center whitespace-nowrap"
-            style={{ width: '37%' }}
+            style={{ width: "37%" }}
             role="progressbar"
             aria-valuenow="5"
             aria-valuemin="0"
@@ -124,15 +104,17 @@ const AllAlarm = () => {
             <span className="text-black">2359 hrs</span>
           </div>
         </div>
-{/*2nd alarm--------------------- */}
-         <div className="items-center md:mb-3">
-          <span className="text-[#0F1C40] md:text-xl font-bold">Double Belt Cooling System Alarm</span>
+        {/*2nd alarm--------------------- */}
+        <div className="items-center md:mb-3">
+          <span className="text-[#0F1C40] md:text-xl font-bold">
+            Double Belt Cooling System Alarm
+          </span>
         </div>
-        
+
         <div className="flex w-full md:h-2 h-1.5 bg-gray-200 overflow-hidden mb-2">
           <div
             className="flex flex-col justify-center overflow-hidden bg-[#008E28] text-xs text-white text-center whitespace-nowrap"
-            style={{ width: '78%' }}
+            style={{ width: "78%" }}
             role="progressbar"
             aria-valuenow="25"
             aria-valuemin="0"
@@ -143,7 +125,6 @@ const AllAlarm = () => {
         <div className="flex justify-between w-full md:text-xs text-[8px] mb-2">
           <div className="space-x-[18%] w-[60%]">
             <span className="text-black">0000 hrs</span>
-           
           </div>
           <div className="space-x-5">
             <span className="text-gray-400">2030 hrs</span>
@@ -151,12 +132,15 @@ const AllAlarm = () => {
           </div>
         </div>
 
-{/*--3rd Alarm ----------- */}
+        {/*--3rd Alarm ----------- */}
         <div className="flex justify-between items-center">
-          <span style={{ color: '#FF3334' }} className="md:text-xl font-bold">
+          <span style={{ color: "#FF3334" }} className="md:text-xl font-bold">
             Supercooling System Alarm
           </span>
-          <label htmlFor="toggleFour" className="flex items-center cursor-pointer overflow-hidden select-none text-dark">
+          <label
+            htmlFor="toggleFour"
+            className="flex items-center cursor-pointer overflow-hidden select-none text-dark"
+          >
             <div className="relative">
               <input
                 type="checkbox"
@@ -170,12 +154,16 @@ const AllAlarm = () => {
             </div>
           </label>
         </div>
-        <p className="text-red-500 md:text-[8px] text-[6px] text-right">Manually turn off the alarm</p>
-        <p className="text-red-500 md:text-[8px] text-[5px] pl-[55%] mb-1">Overall Temp. {'>'} 100 degree °C</p>
+        <p className="text-red-500 md:text-[8px] text-[6px] text-right">
+          Manually turn off the alarm
+        </p>
+        <p className="text-red-500 md:text-[8px] text-[5px] pl-[55%] mb-1">
+          Overall Temp. {">"} 100 degree °C
+        </p>
         <div className="flex w-full md:h-2 h-1.5 bg-gray-200 overflow-hidden mb-2">
           <div
             className="flex flex-col justify-center overflow-hidden bg-[#008E28] text-xs text-white text-center whitespace-nowrap"
-            style={{ width: '55%' }}
+            style={{ width: "55%" }}
             role="progressbar"
             aria-valuenow="25"
             aria-valuemin="0"
@@ -183,7 +171,7 @@ const AllAlarm = () => {
           ></div>
           <div
             className="flex flex-col justify-center overflow-hidden bg-[#FF3334] text-xs text-white text-center whitespace-nowrap"
-            style={{ width: '23%' }}
+            style={{ width: "23%" }}
             role="progressbar"
             aria-valuenow="5"
             aria-valuemin="0"
@@ -201,15 +189,17 @@ const AllAlarm = () => {
             <span className="text-black">2359 hrs</span>
           </div>
         </div>
-{/*--4th Alarm--------------- */}
-      <div className="items-center md:mb-3">
-          <span className="text-[#0F1C40] md:text-xl font-bold">Double Belt Cooling System Alarm</span>
+        {/*--4th Alarm--------------- */}
+        <div className="items-center md:mb-3">
+          <span className="text-[#0F1C40] md:text-xl font-bold">
+            Double Belt Cooling System Alarm
+          </span>
         </div>
-        
+
         <div className="flex w-full md:h-2 h-1.5 bg-gray-200 overflow-hidden mb-2">
           <div
             className="flex flex-col justify-center overflow-hidden bg-[#008E28] text-xs text-white text-center whitespace-nowrap"
-            style={{ width: '78%' }}
+            style={{ width: "78%" }}
             role="progressbar"
             aria-valuenow="25"
             aria-valuemin="0"
@@ -220,14 +210,12 @@ const AllAlarm = () => {
         <div className="flex justify-between w-full md:text-xs text-[8px] mb-2">
           <div className="space-x-[18%] w-[60%]">
             <span className="text-black">0000 hrs</span>
-           
           </div>
           <div className="space-x-5">
             <span className="text-gray-400">2030 hrs</span>
             <span className="text-black">2359 hrs</span>
           </div>
         </div>
-      
       </div>
     </div>
   );

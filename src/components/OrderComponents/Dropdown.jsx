@@ -1,42 +1,67 @@
 import React, { useState } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
-const Dropdown = ({ buttonText, options }) => {
+const Dropdown = ({ buttonText, options, isDateDropdown }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [selectedDate, setSelectedDate] = useState(null);
+  const [selectedOption, setSelectedOption] = useState(buttonText);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
 
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
+    setSelectedOption(date.toDateString());
+    setIsOpen(false); // Close the dropdown after selecting a date
+  };
+
+  const handleOptionClick = (option) => {
+    setSelectedOption(option);
+    setIsOpen(false); // Close the dropdown after selecting an option
+  };
+
   return (
-    <div className="  relative text-xl sm:text-sm  sm:mt-0  mt-2 ">
+    <div className="relative inline-block text-left w-full sm:w-auto z-50">
       <button
-        className="border border-blue-950 rounded-md bg-white text-blue-950  font-semibold  text-xs px-2   lg:font-bold lg:text-[15px] lg:px-6 py-2                  flex  w-full"
+        id="dropdownButton"
         onClick={toggleDropdown}
+        className="inline-flex justify-between items-center p-1 md:px-2 rounded-md border-2 border-blue-950 text-sm font-medium text-[#0F1C40] hover:bg-gray-50 focus:outline-none overflow-hidden w-full sm:w-auto"
       >
-        {buttonText}
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          height="24px"
-          viewBox="0 -960 960 960"
-          width="24px"
-          fill="#1e3a8a"
-          className="ml-2 "
-        >
-          <path d="m480-340 180-180-57-56-123 123-123-123-57 56 180 180Zm0 260q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z" />
-        </svg>
+        {selectedOption}
+        <span className="material-symbols-outlined md:ml-4">
+          expand_circle_down
+        </span>
       </button>
+
       {isOpen && (
-        <div className="absolute bg-white shadow-lg mt-1 rounded-md z-50 w-full sm:w-auto">
-          <ul className="py-2">
-            {options.map((option, index) => (
-              <li
-                key={index}
-                className="px-4 py-1 hover:bg-blue-100 cursor-pointer"
-              >
-                {option}
-              </li>
-            ))}
-          </ul>
+        <div
+          id="dropdownMenu"
+          className="absolute right-0 mt-2 w-full sm:w-48 bg-white border border-blue-950 rounded-md shadow-lg"
+        >
+          {isDateDropdown ? (
+            <DatePicker
+              selected={selectedDate}
+              onChange={handleDateChange}
+              inline
+            />
+          ) : (
+            options.map((option, index) => (
+              <React.Fragment key={index}>
+                <a
+                  href="#"
+                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  onClick={() => handleOptionClick(option)}
+                >
+                  {option}
+                </a>
+                {index < options.length - 1 && (
+                  <hr className="border border-gray-300" />
+                )}
+              </React.Fragment>
+            ))
+          )}
         </div>
       )}
     </div>

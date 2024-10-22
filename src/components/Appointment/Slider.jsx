@@ -1,58 +1,65 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import i1 from "../../assets/i1.png";
 import i2 from "../../assets/i2.png";
 
-const Slider = () => {
+const Slider = ({ selectedService }) => {
     const slides = [
-      {
-        src: i1,
-        services: [
-          {
-            id: 1,
-            temperature: "170°C",
-            param: "55 Unit",
-            paramRange: "Between 50 and 100 Unit",
-            status: "Done",
-            statusColor: "green-500",
-          },
-          {
-            id: 2,
-            temperature: "170°C",
-            param: "175 Unit",
-            paramRange: "Between 100 and 200 Unit",
-            status: "Done",
-            statusColor: "green-500",
-          },
-          {
-            id: 3,
-            temperature: "170°C",
-            param: "55 Unit",
-            paramRange: "Between 50 and 100 Unit",
-            status: "Done",
-            statusColor: "green-500",
-          },
-          {
-            id: 4,
-            temperature: "210°C",
-            param: "300 Unit",
-            paramRange: "Between 100 and 200 Unit",
-            status: "In Progress",
-            statusColor: "red-600",
-          },
-        ],
-      },
-      {
-        src: i2,
-        services: [], // Add services if needed for additional slides
-      },
+        {
+            src: selectedService.image || i1,
+            services: [
+                {
+                    id: 1,
+                    temperature: "170°C",
+                    param: "55 Unit",
+                    paramRange: "Between 50 and 100 Unit",
+                    status: "Done",
+                    statusColor: "green-500",
+                },
+                {
+                    id: 2,
+                    temperature: "170°C",
+                    param: "175 Unit",
+                    paramRange: "Between 100 and 200 Unit",
+                    status: "Done",
+                    statusColor: "green-500",
+                },
+                {
+                    id: 3,
+                    temperature: "170°C",
+                    param: "55 Unit",
+                    paramRange: "Between 50 and 100 Unit",
+                    status: "Done",
+                    statusColor: "green-500",
+                },
+                {
+                    id: 4,
+                    temperature: "210°C",
+                    param: "300 Unit",
+                    paramRange: "Between 100 and 200 Unit",
+                    status: "In Progress",
+                    statusColor: "red-600",
+                },
+            ],
+        },
+        {
+            src: i2,
+            services: [], // Add services if needed for the second slide
+        },
+        {
+            src: i1,
+            services: [], // Add services if needed for the third slide
+        },
+        {
+            src: i2,
+            services: [], // Add services if needed for the fourth slide
+        },
     ];
 
-    // Pointer positions for different screen sizes
     const positionStyles = {
         lg: {
-            1: { top: '220px', left: '680px' },
-            2: { top: '190px', left: '150px' },
-            3: { top: '60px', left: '320px' },
+            1: { top: '210px', left: '640px' },
+            2: { top: '190px', left: '185px' },
+            3: { top: '80px', left: '320px' },
             4: { top: '240px', left: '450px' },
         },
         md: {
@@ -80,14 +87,27 @@ const Slider = () => {
         setCurrentIndex((prevIndex) => (prevIndex - 1 + totalSlides) % totalSlides);
     };
 
-    // Function to determine current screen size
     const getScreenSize = () => {
-        if (window.innerWidth >= 1024) return 'lg'; // Large
-        if (window.innerWidth >= 768) return 'md'; // Medium
-        return 'sm'; // Small
+        if (window.innerWidth >= 1024) return 'lg';
+        if (window.innerWidth >= 768) return 'md';
+        return 'sm';
     };
 
-    const screenSize = getScreenSize();
+    const [screenSize, setScreenSize] = useState(getScreenSize());
+    const [activeServiceId, setActiveServiceId] = useState(null);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setScreenSize(getScreenSize());
+        };
+
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    const handleServiceClick = (id) => {
+        setActiveServiceId((prevId) => (prevId === id ? null : id));
+    };
 
     return (
         <div className="container lg:mt-20 mx-auto">
@@ -100,45 +120,43 @@ const Slider = () => {
                         <div className="slide relative flex-shrink-0 w-full" key={slideIndex}>
                             <img src={slide.src} alt={`Image ${slideIndex + 1}`} className="w-full h-auto" />
                             {slide.services.map((service) => {
-                                const { top, left } = positionStyles[screenSize][service.id] || { top: '10px', left: '10px' }; // Default position
-
+                                const { top, left } = positionStyles[screenSize][service.id] || { top: '10px', left: '10px' };
                                 return (
                                     <div key={service.id} className="absolute" style={{ top, left }}>
-                                        <div className="relative group">
-                                            {/* Service Box */}
-                                            <div 
-                                                className={`absolute z-20 bg-white rounded-md p-4 shadow-lg w-40 opacity-0 transition-opacity duration-300 group-hover:opacity-100 ${service.id === 4 ? 'border border-red-600' : 'border border-green-500'}`}
-                                                style={{ 
-                                                    top: `-60px`, // Position above the pointer
-                                                    left: '-80px',
-                                                }}
-                                            >
-                                                <div className={`font-bold mt-3 text-md ${service.id === 4 ? 'text-red-600' : 'text-[#0F1C40]'}`}>
-                                                    Service {service.id}
-                                                </div>
-                                                <p className={`text-sm ${service.id === 4 ? 'text-red-600' : 'text-black'}`}>
-                                                    Temperature: <span className={`font-bold text-lg ${service.id === 4 ? 'text-red-600' : 'text-black'}`}>{service.temperature}</span>
-                                                </p>
-                                                <p className={`text-sm`}>
-                                                    Param:<br /> <span className={`font-bold text-lg ${service.id === 4 ? 'text-red-600' : 'text-black'}`}>{service.param}</span>
-                                                </p>
-                                                <p className="text-xs text-gray-500">{service.paramRange}</p>
-                                                <div className={`absolute top-1 right-1 text-base text-${service.statusColor} font-bold`}>
-                                                    {service.status}
-                                                </div>
-                                            </div>
-
-                                            {/* Pointer */}
-                                            <div 
-                                                className={`absolute w-5 h-5 rounded-full flex items-center justify-center text-white ${service.id === 4 ? 'bg-red-600' : 'bg-green-600'}`}
+                                        <div className="relative">
+                                            <button
+                                                onClick={() => handleServiceClick(service.id)}
+                                                className={`w-5 h-5 rounded-full flex items-center justify-center text-white ${service.id === 4 ? 'bg-red-600' : 'bg-green-600'}`}
                                                 style={{
-                                                    top: '100%', // Place pointer at the bottom of the service box
+                                                    position: 'absolute',
+                                                    top: '100%',
                                                     left: '50%',
-                                                    transform: 'translateX(-30%)', // Center the pointer
+                                                    transform: 'translateX(-30%)',
                                                 }}
                                             >
                                                 X
-                                            </div>
+                                            </button>
+
+                                            {activeServiceId === service.id && (
+                                                <div className={`absolute z-20 bg-white rounded-md p-4 shadow-lg w-40`} style={{
+                                                    top: `-60px`,
+                                                    left: '-80px',
+                                                }} onClick={() => handleServiceClick(service.id)}>
+                                                    <div className={`font-bold mt-3 text-md ${service.id === 4 ? 'text-red-600' : 'text-[#0F1C40]'}`}>
+                                                        Service {service.id}
+                                                    </div>
+                                                    <p className={`text-sm ${service.id === 4 ? 'text-red-600' : 'text-black'}`}>
+                                                        Temperature: <span className={`font-bold text-lg ${service.id === 4 ? 'text-red-600' : 'text-black'}`}>{service.temperature}</span>
+                                                    </p>
+                                                    <p className="text-sm">
+                                                        Param:<br /> <span className={`font-bold text-lg ${service.id === 4 ? 'text-red-600' : 'text-black'}`}>{service.param}</span>
+                                                    </p>
+                                                    <p className="text-xs text-gray-500">{service.paramRange}</p>
+                                                    <div className={`absolute top-1 right-1 text-base text-${service.statusColor} font-bold`}>
+                                                        {service.status}
+                                                    </div>
+                                                </div>
+                                            )}
                                         </div>
                                     </div>
                                 );
@@ -155,14 +173,18 @@ const Slider = () => {
 
                 <div id="dotsContainer" className="flex justify-center space-x-2 mt-4 absolute bottom-4 left-1/2 transform -translate-x-1/2">
                     {slides.map((_, index) => (
-                        <div key={index} className={`dot w-3 h-3 bg-gray-400 rounded-full transition-opacity duration-300 ${index === currentIndex ? 'opacity-100' : 'opacity-30'}`}></div>
+                        <div
+                            key={index}
+                            className={`dot w-3 h-3 bg-gray-400 rounded-full transition-opacity duration-300 ${index === currentIndex ? 'opacity-100' : 'opacity-30'}`}
+                            onClick={() => setCurrentIndex(index)} // Set current index on dot click
+                        ></div>
                     ))}
                 </div>
             </div>
 
-            <h1 className="text-5xl text-[#0F1C40] font-bold mt-12 py-6">Product Pump</h1>
-            <h5 className="text-xl text-[#0F1C40] font-semibold mt-0">Pressure 300 Pa</h5>
-            <p className="text-gray-600 text-xs mt-4">
+            <h1 className="text-5xl text-[#0F1C40] font-bold mt-12 py-6">{selectedService.name || "Product Pump"}</h1>
+            <h5 className="text-xl text-[#0F1C40] font-semibold mt-0">{selectedService.pressure || "Pressure 300 pa"}</h5>
+            <p className="text-gray-600 text-xs mt-4 lg:max-w-lg ">
                 It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here, making it look like readable English.
             </p>
 
@@ -173,7 +195,9 @@ const Slider = () => {
                         {slides[0].services.map(service => (
                             <div className="flex items-stretch" key={service.id}>
                                 <div className={`sm:w-1/4 w-1/3 font-bold ${service.id === 4 ? 'bg-[#C1C1C1] text-[#6A6A6A]' : 'bg-[#0F1C40] text-white'} p-2 rounded-l-md flex items-center justify-between`}>
-                                    Service {service.id}
+                                    <button onClick={() => handleServiceClick(service.id)}>
+                                        Service {service.id}
+                                    </button>
                                     {service.id === 4 ? (
                                         <div className="flex items-center justify-center bg-[#6A6A6A] rounded-full p-1 ml-1 w-6 h-6">
                                             <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
