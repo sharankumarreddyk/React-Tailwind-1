@@ -18,12 +18,12 @@ const AllAlarm = () => {
   };
 
   return (
-    <div className="col-span-3 p-4 px-4">
+    <div className="col-span-3 p-4 lg:pl-14 px-4">
       <header className="flex justify-between items-center mb-4">
         <div className="flex justify-center md:space-x-2 items-center">
           <h2
             style={{ color: "#0F1C40" }}
-            className="md:text-xl text-lg md:font-bold font-semibold"
+            className="md:text-xl text-lg md:pl-2 md:font-bold font-semibold"
           >
             All Alarms
           </h2>
@@ -47,10 +47,10 @@ const AllAlarm = () => {
           </div>
         </div>
 
-        <div className="flex md:space-x-6 space-x-1">
+        <div className="flex md:space-x-6  space-x-1">
           <Dropdown buttonText="Today" options={[]} isDateDropdown={true} />
 
-          <button className="bg-[#0F1C40] justify-center text-xs font-semibold text-center items-center text-white p-1 px-3 rounded-md">
+          <button className="bg-[#0F1C40] justify-center  text-xs font-semibold text-center items-center text-white p-1 px-3 rounded-md">
             Create Alarm
           </button>
         </div>

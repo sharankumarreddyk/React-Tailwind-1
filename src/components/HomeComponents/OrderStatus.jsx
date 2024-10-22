@@ -2,7 +2,7 @@ import React from 'react';
 
 const OrderStatus = ({bgColor}) => {
   return (
-    <div className="col-span-7 bg-white overflow-x-auto xl:overflow-hidden shadow-md rounded-lg border-2 border-[#008E28] p-0">
+    <div className="col-span-7 bg-white overflow-x-auto xl:overflow-hidden shadow-md rounded-lg border-2  border-[#008E28] p-0">
       {/* Progress Bar Container */}
       <div className="min-w-[800px] xl:min-w-fit mb-2 h-full">
         {/* Progress Bar Line */}
