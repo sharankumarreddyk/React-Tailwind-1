@@ -1,10 +1,13 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import ImageBox from "./ImageBox";
+import Dropdown from "../OrderComponents/Dropdown";
 import i1 from "../../assets/i1.png";
 import i2 from "../../assets/i2.png";
 
 const MachineSlider = () => {
   const imageContainerRef = useRef(null); // Create a reference to the container
+  const [selectedImage, setSelectedImage] = useState(null); // State to manage selected image
+  const [visibleServiceBox, setVisibleServiceBox] = useState(null); // State to manage the visibility of the service box
 
   const machines = [
     {
@@ -69,112 +72,139 @@ const MachineSlider = () => {
       imageContainerRef.current.scrollBy({ left: 300, behavior: "smooth" }); // Adjust the scroll amount as needed
     }
   };
+  const scrollLeft = () => {
+    if (imageContainerRef.current) {
+      imageContainerRef.current.scrollBy({ left: -300, behavior: "smooth" }); // Adjust the scroll amount as needed
+    }
+  };
+
+  // Function to handle image click
+  const handleImageClick = (index) => {
+    setSelectedImage(index);
+  };
+
+  // Function to toggle the service box visibility
+  const toggleServiceBox = (part) => {
+    setVisibleServiceBox(visibleServiceBox === part ? null : part);
+  };
 
   return (
-    <div className=" bg-white m-2 p-6">
-      <div class=" sm:flex justify-between items-center ">
-        <div class="sm:flex justify-center space-x-1 items-center">
-          <h2 class="text-[#0F1C40] md:text-5xl text-3xl font-bold ">
+    <div className="bg-white m-2 p-6">
+      <div className="sm:flex justify-between items-center">
+        <div className="sm:flex justify-center space-x-1 items-center">
+          <h2 className="text-[#0F1C40] md:text-5xl text-3xl font-bold">
             Machines
           </h2>
         </div>
-        <div class="flex  space-x-3 mb-3">
-          <div class="relative text-sm">
-            <button
-              class="border-2 border-[#0F1C40] px-4 py-2 rounded-md bg-white text-[#0F1C40] flex justify-between w-full"
-              onclick="toggleDropdown('machineDropdown')"
-            >
-              Machine Filter
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                height="24px"
-                viewBox="0 -960 960 960"
-                width="24px"
-                fill="#1e3a8a"
-                class="ml-2"
-              >
-                <path d="m480-340 180-180-57-56-123 123-123-123-57 56 180 180Zm0 260q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z" />
-              </svg>
-            </button>
-            <div
-              id="machineDropdown"
-              class="absolute right-0 hidden bg-white shadow-lg mt-1 rounded-md"
-            >
-              <ul class="py-2">
-                <li class="px-4 py-1 hover:bg-blue-100 cursor-pointer">
-                  Product Pump
-                </li>
-                <li class="px-4 py-1 hover:bg-blue-100 cursor-pointer">
-                  Machine 2
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="relative text-sm">
-            <button
-              class="border-2 border-[#0F1C40] px-4 py-2 rounded-md bg-white text-[#0F1C40] flex justify-between w-full"
-              onclick="toggleDropdown('departmentDropdown')"
-            >
-              Department Name
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                height="24px"
-                viewBox="0 -960 960 960"
-                width="24px"
-                fill="#1e3a8a"
-                class="ml-2"
-              >
-                <path d="m480-340 180-180-57-56-123 123-123-123-57 56 180 180Zm0 260q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z" />
-              </svg>
-            </button>
-            <div
-              id="departmentDropdown"
-              class="absolute right-0 hidden bg-white shadow-lg mt-1 rounded-md"
-            >
-              <ul class="py-2">
-                <li class="px-4 py-1 hover:bg-blue-100 cursor-pointer">
-                  Department 1
-                </li>
-                <li class="px-4 py-1 hover:bg-blue-100 cursor-pointer">
-                  Department 2
-                </li>
-              </ul>
-            </div>
-          </div>
+        <div className="flex space-x-3 mb-3">
+          <Dropdown
+            buttonText="Machine Filter"
+            options={["Product Pump", "Machine 2"]}
+            isDateDropdown={false}
+            customClass=""
+          />
+          <Dropdown
+            buttonText="Department Name"
+            options={["Department 1", "Department 2"]}
+            isDateDropdown={false}
+            customClass=""
+          />
         </div>
       </div>
-      <div>
-        <div className="flex  ">
-          <div
-            id="image-container"
-            ref={imageContainerRef} // Attach the ref here
-            className="overflow-x-auto bg-gray-100 border border-white py-6 px-4 rounded-l-lg"
+
+      <div className="flex">
+        <div className="py-44 justify-center items-center bg-gray-100 hidden sm:block rounded-r-lg">
+          <button
+            id="scroll-left"
+            onClick={scrollLeft} // Attach the scroll function
+            className="justify-center font-bold text-center p-3 px-2 sm:px-8 lg:px-5 rounded-md text-sm sm:text-md lg:text-lg"
           >
-            <div className="flex space-x-6">
-              {machines.map((machine, index) => (
+            <span className="material-symbols-outlined text-[#0F1C40] text-5xl">
+              arrow_circle_left
+            </span>
+          </button>
+        </div>
+
+        <div
+          id="image-container"
+          ref={imageContainerRef} // Attach the ref here
+          className="overflow-x-auto bg-gray-100 border border-white py-6 px-4 rounded-l-lg hide-scrollbar w-full sm:w-auto"
+        >
+          <div className="flex space-x-6 ">
+            {machines.map((machine, index) => (
+              <div
+                key={index}
+                onClick={() => handleImageClick(index)}
+                className={`relative transition-transform duration-300 ${
+                  selectedImage === index ? "transform scale-105" : ""
+                }`}
+              >
                 <ImageBox
-                  key={index}
                   title={machine.title}
                   branch={machine.branch}
                   location={machine.location}
                   time={machine.time}
                   imageSrc={machine.imageSrc}
                 />
-              ))}
-            </div>
-          </div>
+                {index === 1 && (
+                  <div className="absolute top-28 right-32 sm:top-24 sm:right-24 lg:top-42 lg:right-52 group">
+                    <button
+                      onClick={() => toggleServiceBox("part1")}
+                      className="bg-red-600 text-white rounded-full w-5 px-1 justify-center"
+                    >
+                      X
+                    </button>
+                    {visibleServiceBox === "part1" && (
+                      <div className="absolute mt-5 z-20 bg-white border border-red-500 text-red-500 rounded-md p-2 shadow-lg">
+                        <div className="flex justify-between text-red-500 mt-2 font-bold text-md">
+                          Part 1 <p>Damage</p>
+                        </div>
+                        <div className="flex">
+                          <p className="text-sm">
+                            Temperature: <br />
+                            <span className="font-bold ml-2 text-lg">
+                              210°C
+                            </span>
+                          </p>
+                        </div>
+                        <div className="flex items-center">
+                          <p className="ml-2">
+                            Param 7:
+                            <br />
+                            <span className="font-bold text-lg">300 Unit</span>
+                          </p>
+                        </div>
+                        <p className="text-xs text-red-500">
+                          Between 100 and 200 Unit
+                        </p>
 
-          <div className="py-44 justify-center items-center bg-gray-100 hidden sm:block  rounded-r-lg ">
-            <button
-              id="scroll-right"
-              onClick={scrollRight} // Attach the scroll function
-              className="justify-center font-bold text-center p-3 px-6 sm:px-8 lg:px-10 text-white rounded-md text-sm sm:text-md lg:text-lg"
-            >
-              <span className="material-symbols-outlined text-[#0F1C40] text-5xl">
-                arrow_circle_right
-              </span>
-            </button>
+                        <div className="flex mt-3 mx-3 space-x-2">
+                          <button className="border text-xs px-2 py-1 rounded-md bg-[#FF3334] text-white">
+                            Service
+                          </button>
+                          <button className="border text-xs px-2 py-1 rounded-md bg-white text-[#FF3334]">
+                            Order
+                          </button>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+            ))}
           </div>
+        </div>
+
+        <div className="py-44 justify-center items-center bg-gray-100 hidden sm:block rounded-r-lg">
+          <button
+            id="scroll-right"
+            onClick={scrollRight} // Attach the scroll function
+            className="justify-center font-bold text-center p-3 px-6 sm:px-8 lg:px-5 text-white rounded-md text-sm sm:text-md lg:text-lg"
+          >
+            <span className="material-symbols-outlined text-[#0F1C40] text-5xl">
+              arrow_circle_right
+            </span>
+          </button>
         </div>
       </div>
     </div>

@@ -20,7 +20,7 @@ const AllAlarm = () => {
   return (
     <div className="col-span-3 p-4 lg:pl-14 px-4">
       <header className="flex justify-between items-center mb-4">
-        <div className="flex justify-center md:space-x-2 items-center">
+        <div className="sm:flex justify-center md:space-x-2 items-center">
           <h2
             style={{ color: "#0F1C40" }}
             className="md:text-xl text-lg md:pl-2 md:font-bold font-semibold"
