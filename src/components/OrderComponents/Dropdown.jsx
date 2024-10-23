@@ -2,19 +2,26 @@ import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-const Dropdown = ({ buttonText, options, isDateDropdown }) => {
+const Dropdown = ({ buttonText, options, isDateDropdown, customClass }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedOption, setSelectedOption] = useState(buttonText);
+  const [dropdownSize, setDropdownSize] = useState("w-full sm:w-48");
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
+    if (isDateDropdown) {
+      setDropdownSize("w-auto"); // Adjust size for calendar
+    } else {
+      setDropdownSize("w-full sm:w-48"); // Default size
+    }
   };
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
     setSelectedOption(date.toDateString());
     setIsOpen(false); // Close the dropdown after selecting a date
+    setDropdownSize("w-full sm:w-48"); // Reset size after selection
   };
 
   const handleOptionClick = (option) => {
@@ -38,13 +45,14 @@ const Dropdown = ({ buttonText, options, isDateDropdown }) => {
       {isOpen && (
         <div
           id="dropdownMenu"
-          className="absolute right-0 mt-2 w-full sm:w-48 bg-white border border-blue-950 rounded-md shadow-lg"
+          className={`absolute  mt-2 bg-white border border-blue-950 rounded-md shadow-lg max-w-xs sm:max-w-none ${dropdownSize} ${customClass}`}
         >
           {isDateDropdown ? (
             <DatePicker
               selected={selectedDate}
               onChange={handleDateChange}
               inline
+              className="w-full z-50"
             />
           ) : (
             options.map((option, index) => (
