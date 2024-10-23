@@ -60,21 +60,29 @@ const steps = [
   },
 ];
 
+
+
 const Orders = () => {
-  const [activeButton, setActiveButton] = useState("Description");
+  const [activeButton, setActiveButton] = useState("Active Orders");
+  const [activeSpec, setActiveSpec] = useState("Description"); // New state for spec buttons
 
   const handleButtonClick = (name) => {
     setActiveButton(name);
   };
 
+  const handleSpecButtonClick = (name) => {
+    setActiveSpec(name); // Update the active spec button
+  };
+
+  
   return (
     <>
       <div className="bg-white">
         <Header />
         <div className="mx-auto px-4 sm:px-6 mb-10">
           <div className="grid grid-cols-12 sm:mt-8 mt-2">
-            <div className="col-span-12 sm:col-span-6 flex flex-row sm:flex-row">
-              <Button
+            <div id="Leftbutton" className="col-span-12 sm:col-span-6 flex flex-row sm:flex-row">
+            <Button
                 name="Active Orders"
                 isActive={activeButton === "Active Orders"}
                 onClick={() => handleButtonClick("Active Orders")}
@@ -157,20 +165,20 @@ const Orders = () => {
               <div className="Product-Description">
                 <Specs_button
                   name="Description"
-                  isActive={activeButton === "Description"}
-                  onClick={() => handleButtonClick("Description")}
+                  isActive={activeSpec === "Description"} // Update active state check
+                  onClick={() => handleSpecButtonClick("Description")} // Update click handler
                 />
                 <Specs_button
                   name="Specification"
-                  isActive={activeButton === "Specification"}
-                  onClick={() => handleButtonClick("Specification")}
+                  isActive={activeSpec === "Specification"} // Update active state check
+                  onClick={() => handleSpecButtonClick("Specification")} // Update click handler
                 />
                 <Specs_button
                   name="Technical Information"
-                  isActive={activeButton === "Technical Information"}
-                  onClick={() => handleButtonClick("Technical Information")}
+                  isActive={activeSpec === "Technical Information"} // Update active state check
+                  onClick={() => handleSpecButtonClick("Technical Information")} // Update click handler
                 />
-                {activeButton && <ParameterList activeButton={activeButton} />}
+                {activeSpec && <ParameterList activeButton={activeSpec} />} {/* Update to pass the correct state */}
               </div>
             </div>
           </div>

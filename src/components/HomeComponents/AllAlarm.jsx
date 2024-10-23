@@ -182,10 +182,10 @@ const AllAlarm = () => {
         <div className="flex justify-between w-full md:text-xs text-[8px] mb-2">
           <div className="md:space-x-[70%] space-x-[63%] w-[65%]">
             <span className="text-black">0000 hrs</span>
-            <span className="text-black">1830 hrs</span>
+            <span className="text-[#FF3334]">1830 hrs</span>
           </div>
           <div className="space-x-5">
-            <span className="text-gray-400">2030 hrs</span>
+            <span className="text-[#FF3334]">2030 hrs</span>
             <span className="text-black">2359 hrs</span>
           </div>
         </div>

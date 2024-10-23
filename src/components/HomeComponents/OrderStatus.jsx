@@ -85,7 +85,7 @@ const OrderStatus = ({bgColor}) => {
 
           {/* Step 6 */}
           <div>
-            <p className={`font-bold text-xs ${bgColor === 'bg-[#008E28]' ? 'text-[#0F1C40]' : 'text-gray-400'}`}>Delivered</p>
+            <p className={`font-bold text-xs ${bgColor === 'bg-[#008E28]' ? 'text-gray-400' : 'text-gray-400'}`}>Delivered</p>
             <p className="text-xs text-gray-400">Feb 20, 2024</p>
             <ul className="text-[9px] list-disc list-inside text-gray-400 mt-2 text-start px-1">
               <li>Order processed</li>

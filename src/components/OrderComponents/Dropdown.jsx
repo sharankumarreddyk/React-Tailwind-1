@@ -45,7 +45,7 @@ const Dropdown = ({ buttonText, options, isDateDropdown, customClass }) => {
       {isOpen && (
         <div
           id="dropdownMenu"
-          className={`absolute  mt-2 bg-white border border-blue-950 rounded-md shadow-lg max-w-xs sm:max-w-none ${dropdownSize} ${customClass}`}
+          className={`absolute  mt-6 sm:mt-2 bg-white border border-blue-950 rounded-md shadow-lg max-w-xs sm:max-w-none ${dropdownSize} ${customClass}`}
         >
           {isDateDropdown ? (
             <DatePicker

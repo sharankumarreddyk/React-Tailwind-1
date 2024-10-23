@@ -15,6 +15,10 @@ const ImageSlider = ({ images }) => {
     );
   };
 
+  const goToSlide = (index) => {
+    setCurrentIndex(index);
+  };
+
   return (
     <div className="slider-container relative w-fit h-100 overflow-hidden">
       <div
@@ -33,14 +37,14 @@ const ImageSlider = ({ images }) => {
       </div>
       <button
         id="prev"
-        className="absolute top-1/2 left-0 -translate-y-1/2 button-bg text-white rounded-full p-3 opacity-50 text-xl"
+        className="absolute top-1/2 left-0 -translate-y-1/2 button-bg text-black bg-gray-200 hover:bg-gray-300 rounded-full p-2 opacity-80 text-xl"
         onClick={prevSlide}
       >
         &lt;
       </button>
       <button
         id="next"
-        className="absolute top-1/2 right-0 -translate-y-1/2 button-bg text-white rounded-full p-3 opacity-50 text-xl"
+        className="absolute top-1/2 right-0 -translate-y-1/2 button-bg text-black bg-gray-200 hover:bg-gray-300 rounded-full p-2 opacity-80 text-xl"
         onClick={nextSlide}
       >
         &gt;
@@ -49,11 +53,12 @@ const ImageSlider = ({ images }) => {
         {images.map((_, index) => (
           <div
             key={index}
-            className={`dot w-3 h-3 rounded-full ${
+            className={`dot w-3 h-3 rounded-full cursor-pointer ${
               index === currentIndex
                 ? "bg-gray-700 opacity-100"
                 : "bg-gray-400 opacity-30"
             }`}
+            onClick={() => goToSlide(index)} // Make dots clickable
           ></div>
         ))}
       </div>
