@@ -63,7 +63,7 @@ const OrderItem = ({
 
         {/* Selected Text */}
         {selected && (
-          <div className="absolute top-0 right-0 text-blue-950 text-[15px]  font-bold mt-4 ">
+          <div className="absolute top-0 right-0 text-blue-950 text-[15px]  font-bold sm:mt-4 mr-3 lg:mr-0 ">
             Selected
           </div>
         )}
