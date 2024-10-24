@@ -16,7 +16,7 @@ const MachineSlider = () => {
       location: "J.K. Building 2.0",
       time: "340 h 23 m 20 s",
       imageSrc: i1,
-      borderColor: "border-[#008E28]", // Example border color
+      borderColor: "border-[#008E28]",
       textColor: "text-[#008E28]",
     },
     {
@@ -66,71 +66,71 @@ const MachineSlider = () => {
     // Add more machines as needed
   ];
 
-  // Function to scroll right
-  const scrollRight = () => {
+  // Unified function to handle scrolling (works for both mobile and desktop)
+  const scroll = (direction) => {
     if (imageContainerRef.current) {
-      imageContainerRef.current.scrollBy({ left: 300, behavior: "smooth" }); // Adjust the scroll amount as needed
-    }
-  };
-  const scrollLeft = () => {
-    if (imageContainerRef.current) {
-      imageContainerRef.current.scrollBy({ left: -300, behavior: "smooth" }); // Adjust the scroll amount as needed
+      const scrollAmount = 350; // Adjust the scroll amount as needed
+      const scrollValue = direction === "left" ? -scrollAmount : scrollAmount;
+      imageContainerRef.current.scrollBy({
+        left: scrollValue,
+        behavior: "smooth",
+      });
     }
   };
 
   // Function to handle image click
   const handleImageClick = (index) => {
+    console.log(`Image ${index} clicked`);
     setSelectedImage(index);
   };
 
   // Function to toggle the service box visibility
   const toggleServiceBox = (part) => {
+    console.log(`Service box ${part} toggled`);
     setVisibleServiceBox(visibleServiceBox === part ? null : part);
   };
 
   return (
-    <div className="bg-white m-2 p-6">
+    <div className="bg-white m-2 p-4 sm:p-6">
       <div className="sm:flex justify-between items-center">
         <div className="sm:flex justify-center space-x-1 items-center">
-          <h2 className="text-[#0F1C40] md:text-5xl text-3xl font-bold">
+          <h2 className="text-[#0F1C40] text-2xl sm:text-3xl md:text-5xl font-bold">
             Machines
           </h2>
         </div>
-        <div className="flex space-x-3 mb-3">
+        <div className="flex space-x-2 sm:space-x-3 mb-3">
           <Dropdown
             buttonText="Machine Filter"
             options={["Product Pump", "Machine 2"]}
-            isDateDropdown={false}
-            customClass=""
           />
           <Dropdown
             buttonText="Department Name"
             options={["Department 1", "Department 2"]}
-            isDateDropdown={false}
-            customClass=""
           />
         </div>
       </div>
 
-      <div className="flex">
-        <div className="py-44 justify-center items-center bg-gray-100 hidden sm:block rounded-r-lg">
+      {/* Slider section */}
+      <div className="relative">
+        {/* Left Scroll Button */}
+        <div className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 sm:bg-gray-100 sm:py-40 ">
           <button
-            id="scroll-left"
-            onClick={scrollLeft} // Attach the scroll function
-            className="justify-center font-bold text-center p-3 px-2 sm:px-8 lg:px-5 rounded-md text-sm sm:text-md lg:text-lg"
+            onClick={() => scroll("left")} // Unified scroll function
+            className="justify-center font-bold text-center p-2 sm:p-3 px-2 sm:px-4 lg:px-2 rounded-md text-xs sm:text-sm lg:text-lg"
           >
-            <span className="material-symbols-outlined text-[#0F1C40] text-5xl">
+            <span className="material-symbols-outlined text-[#0F1C40] text-3xl sm:text-5xl">
               arrow_circle_left
             </span>
           </button>
         </div>
 
         <div
-          id="image-container"
-          ref={imageContainerRef} // Attach the ref here
-          className="overflow-x-auto bg-gray-100 border border-white py-6 px-4 rounded-l-lg hide-scrollbar w-full sm:w-auto"
+          ref={imageContainerRef}
+          className="overflow-x-auto bg-gray-100 border border-white py-8 sm:py-12 px-4  hide-scrollbar sm:rounded-md "
         >
-          <div className="flex space-x-6 ">
+          <div className="flex space-x-4 sm:space-x-6 pl-8 pr-8 sm:pl-20 sm:pr-20">
+            {" "}
+            {/* Added padding-left and padding-right here */}
             {machines.map((machine, index) => (
               <div
                 key={index}
@@ -147,10 +147,13 @@ const MachineSlider = () => {
                   imageSrc={machine.imageSrc}
                 />
                 {index === 1 && (
-                  <div className="absolute top-28 right-32 sm:top-24 sm:right-24 lg:top-42 lg:right-52 group">
+                  <div className="absolute top-20 sm:top-28 right-20 sm:right-32 group">
                     <button
-                      onClick={() => toggleServiceBox("part1")}
-                      className="bg-red-600 text-white rounded-full w-5 px-1 justify-center"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        toggleServiceBox("part1");
+                      }}
+                      className="bg-red-600 text-white rounded-full w-4 sm:w-5 px-1 justify-center"
                     >
                       X
                     </button>
@@ -169,8 +172,7 @@ const MachineSlider = () => {
                         </div>
                         <div className="flex items-center">
                           <p className="ml-2">
-                            Param 7:
-                            <br />
+                            Param 7: <br />
                             <span className="font-bold text-lg">300 Unit</span>
                           </p>
                         </div>
@@ -192,16 +194,18 @@ const MachineSlider = () => {
                 )}
               </div>
             ))}
+            {/* Add an empty div to create space at the end */}
+            <div className="flex-shrink-0 w-8 sm:w-20"></div>
           </div>
         </div>
 
-        <div className="py-44 justify-center items-center bg-gray-100 hidden sm:block rounded-r-lg">
+        {/* Right Scroll Button */}
+        <div className="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 sm:bg-gray-100 sm:py-40 ">
           <button
-            id="scroll-right"
-            onClick={scrollRight} // Attach the scroll function
-            className="justify-center font-bold text-center p-3 px-6 sm:px-8 lg:px-5 text-white rounded-md text-sm sm:text-md lg:text-lg"
+            onClick={() => scroll("right")} // Unified scroll function
+            className="justify-center font-bold text-center p-2 sm:p-3 px-2 sm:px-4 lg:px-2 rounded-md text-xs sm:text-sm lg:text-lg"
           >
-            <span className="material-symbols-outlined text-[#0F1C40] text-5xl">
+            <span className="material-symbols-outlined text-[#0F1C40] text-3xl sm:text-5xl">
               arrow_circle_right
             </span>
           </button>
