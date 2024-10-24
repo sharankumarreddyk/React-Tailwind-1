@@ -9,6 +9,7 @@ const OrderItem = ({
   price,
   invoiceLink,
   onClick,
+  selected,
 }) => {
   return (
     <>
@@ -19,7 +20,7 @@ const OrderItem = ({
       />
 
       <div
-        className="order-item flex items-center p-4 border-b border-gray-300  cursor-pointer"
+        className="order-item relative flex items-center p-4 border-b border-gray-300 cursor-pointer"
         onClick={onClick}
       >
         {/* Image Section */}
@@ -59,6 +60,13 @@ const OrderItem = ({
             Download Invoice
           </a>
         </div>
+
+        {/* Selected Text */}
+        {selected && (
+          <div className="absolute top-0 right-0 text-blue-950 text-[15px]  font-bold mt-4 ">
+            Selected
+          </div>
+        )}
       </div>
     </>
   );
