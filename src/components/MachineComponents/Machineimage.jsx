@@ -53,7 +53,46 @@ const MachineImage = ({ selectedMachineIndex }) => {
       location: "A.A. Building 1.0",
       time: "340 h 23 m 20 s",
     },
-    // ... other machines
+    {
+      title: "Venturi Dryer Alarm",
+      branch: "KLM Branch",
+      location: "J.K. Building 2.0",
+      time: "340 h 23 m 20 s",
+      imageSrc: i1,
+    },
+    {
+      title: "Venturi Dryer Alarm",
+      branch: "KLM Branch",
+      location: "J.K. Building 2.0",
+      time: "340 h 23 m 20 s",
+      imageSrc: i2,
+    },
+    {
+      title: "Venturi Dryer Alarm",
+      branch: "KLM Branch",
+      location: "J.K. Building 2.0",
+      time: "340 h 23 m 20 s",
+      imageSrc: i1,
+    },
+    {
+      title: "Venturi Dryer Alarm",
+      branch: "KLM Branch",
+      location: "J.K. Building 2.0",
+      time: "340 h 23 m 20 s",
+      imageSrc: i2,
+    },
+    {
+      title: "Venturi Dryer Alarm",
+      branch: "KLM Branch",
+      location: "J.K. Building 2.0",
+      time: "340 h 23 m 20 s",
+      imageSrc: i2,
+    },
+
+
+
+
+    
   ];
 
   const selectedMachine = machines[selectedMachineIndex];
