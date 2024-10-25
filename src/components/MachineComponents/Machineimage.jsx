@@ -157,7 +157,7 @@ const MachineImage = ({ selectedMachineIndex }) => {
 
       <div>
         <div className="grid md:grid-cols-10">
-          <div className="col-span-10 z-10 md:col-span-2 px-16 sm:p-8">
+          <div className="col-span-10 z-10 md:col-span-2 px-16 sm:p-6">
             <div className="space-y-4 pl-4 py-4 pr-14 w-fit shadow-lg shadow-gray-400 bg-white border-2 border-white rounded-md">
               <h2 className="text-[#0F1C40] text-2xl font-bold">Details</h2>
               <div className="flex-2 text-[#0F1C40] text-start">
