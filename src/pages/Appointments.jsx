@@ -23,13 +23,13 @@ const ServiceManagement = () => {
 
   return (
     <>
-      <Header />
-      <div className="w-full ml-1 p-2 m-0 bg-white">
+      
+      <div className="w-full ml-1 p-2  m-0 bg-white">
         {/* Service Filter */}
         <ServiceFilter onTabChange={handleTabChange} />
 
         {/* Grid Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mt-6 lg:ml-8 lg:mr-12">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mt-6 ">
           {/* Service Box - taking 2 columns */}
           <div className="col-span-2">
             <div className="bg-white rounded-lg shadow-lg p-4">
@@ -43,7 +43,7 @@ const ServiceManagement = () => {
           </div>
         </div>
       </div>
-      <Footer />
+      
     </>
   );
 };

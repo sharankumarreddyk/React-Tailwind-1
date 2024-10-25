@@ -26,7 +26,7 @@ const HomeAppointments = () => {
       </div>
 
       {/* Visible only on medium and larger screens */}
-      <div className="p-6 hidden lg:px-12 sm:block">
+      <div className="p-6 hidden  sm:block">
         <h2 className="text-2xl font-bold lg:pl-2 mb-4">Appointments</h2>
         <div className="bg-gray-100 sm:p-6 rounded-lg shadow-lg overflow-x-auto">
           <div className="min-w-[1200px] grid sm:grid-cols-3 gap-3 md:gap-16 p-0">

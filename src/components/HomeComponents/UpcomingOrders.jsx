@@ -6,7 +6,7 @@ import ProductDetails from "./ProductDetails";
 
 const UpcomingOrders = () => {
   return (
-    <div className=" px-2 lg:px-12">
+    <div className=" px-2 ">
       <h2 className="text-2xl font-bold text-[#0F1C40] mb-4 px-4 ">
         Upcoming Orders
       </h2>

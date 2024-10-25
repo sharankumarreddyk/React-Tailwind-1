@@ -5,6 +5,8 @@ import Orders from './pages/Orders';
 import Appointments from './pages/Appointments';
 import Machines from './pages/Machines';
 import Home from './pages/Home';
+import Header from './components/Header';
+import Footer from './components/Footer';
 
 
 function App() {
@@ -12,13 +14,17 @@ function App() {
 
   return (
     <Router>
-      <div>
+      <div className='bg-white'>
+        <Header />
+        <main className='px-16'>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/Machines" element={<Machines />} />
           <Route path="/orders" element={<Orders />} />
           <Route path="/Appointments" element={<Appointments/>} />
         </Routes>
+        </main>
+        <Footer/>
       </div>
     </Router>
   )

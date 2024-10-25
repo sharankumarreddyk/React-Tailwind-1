@@ -129,8 +129,8 @@ const Orders = () => {
   return (
     <>
       <div className="bg-white">
-        <Header />
-        <div className="mx-auto px-4 sm:px-6 mb-10">
+       
+        <div className="mx-auto  mb-10">
           <div className="grid grid-cols-12 sm:mt-8 mt-2">
             <div
               id="Leftbutton"
@@ -187,7 +187,7 @@ const Orders = () => {
               ))}
             </div>
 
-            <div className="container px-4 sm:px-8 col-span-12 lg:col-span-7 w-full min-h-[200px]">
+            <div className="container px-4 pl-8 col-span-12 lg:col-span-7 w-full min-h-[200px]">
               <ProgressBar steps={steps} />
 
               <div className="mt-5">
@@ -226,7 +226,7 @@ const Orders = () => {
             </div>
           </div>
         </div>
-        <Footer />
+        
       </div>
     </>
   );

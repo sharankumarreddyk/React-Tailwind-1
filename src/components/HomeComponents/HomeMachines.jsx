@@ -3,7 +3,7 @@ import img1 from "../../assets/img1.jpg";
 
 function HomeMachines() {
   return (
-    <section className="col-span-4 md:p-2 p-4 lg:pr-14 mt-2">
+    <section className="col-span-4 md:p-2 p-4  mt-2">
       <header className="flex justify-between items-center mb-4">
         <h2 className="text-[#0F1C40] md:text-xl text-lg md:font-bold font-semibold">
           Machines under alarm

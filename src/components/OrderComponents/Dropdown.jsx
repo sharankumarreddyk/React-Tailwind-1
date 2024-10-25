@@ -6,27 +6,37 @@ const Dropdown = ({ buttonText, options, isDateDropdown, customClass }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedOption, setSelectedOption] = useState(buttonText);
+  const [isSelected, setIsSelected] = useState(false);
   const [dropdownSize, setDropdownSize] = useState("w-full sm:w-48");
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
     if (isDateDropdown) {
-      setDropdownSize("w-auto"); // Adjust size for calendar
+      setDropdownSize("w-auto");
     } else {
-      setDropdownSize("w-full sm:w-48"); // Default size
+      setDropdownSize("w-full sm:w-48");
     }
   };
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
     setSelectedOption(date.toDateString());
-    setIsOpen(false); // Close the dropdown after selecting a date
-    setDropdownSize("w-full sm:w-48"); // Reset size after selection
+    setIsOpen(false);
+    setDropdownSize("w-full sm:w-48");
+    setIsSelected(true);
   };
 
   const handleOptionClick = (option) => {
     setSelectedOption(option);
-    setIsOpen(false); // Close the dropdown after selecting an option
+    setIsOpen(false);
+    setIsSelected(true);
+  };
+
+  const handleClearSelection = (e) => {
+    e.stopPropagation(); // Prevent the dropdown from closing when clicking the clear icon
+    setSelectedDate(null);
+    setSelectedOption(buttonText);
+    setIsSelected(false);
   };
 
   return (
@@ -34,18 +44,38 @@ const Dropdown = ({ buttonText, options, isDateDropdown, customClass }) => {
       <button
         id="dropdownButton"
         onClick={toggleDropdown}
-        className="inline-flex justify-between items-center p-1 md:px-2 rounded-md border-2 border-blue-950 text-sm font-medium text-[#0F1C40] hover:bg-gray-50 focus:outline-none overflow-hidden w-full sm:w-auto"
+        className="flex justify-between items-center p-1 md:px-2 rounded-md border-2 border-blue-950 text-sm font-medium text-[#0F1C40] hover:bg-gray-50 focus:outline-none overflow-hidden w-full sm:w-auto"
       >
-        {selectedOption}
-        <span className="material-symbols-outlined md:ml-4">
-          expand_circle_down
-        </span>
+        <span className="flex items-center">{selectedOption}</span>
+        <span className="material-symbols-outlined md:ml-4">expand_circle_down</span>
+        {isSelected && (
+          <span
+            onClick={handleClearSelection}
+            className="ml-2 cursor-pointer"
+            title="Clear selection"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth="1.5"
+              stroke="currentColor"
+              className="size-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+              />
+            </svg>
+          </span>
+        )}
       </button>
 
       {isOpen && (
         <div
           id="dropdownMenu"
-          className={`absolute  mt-6 sm:mt-2 bg-white border border-blue-950 rounded-md shadow-lg max-w-xs sm:max-w-none ${dropdownSize} ${customClass}`}
+          className={`absolute mt-6 sm:mt-2 bg-white border border-blue-950 rounded-md shadow-lg max-w-xs sm:max-w-none ${dropdownSize} ${customClass}`}
         >
           {isDateDropdown ? (
             <DatePicker

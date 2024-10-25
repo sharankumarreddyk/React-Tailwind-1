@@ -30,7 +30,7 @@ const OrderItem = ({
           className="w-[140px] h-[120px] object-fill sm:block hidden"
         />
         {/* Product Details Section */}
-        <div className="order-details flex-grow ml-4 lg:ml-2 sm:min-h-[125px] text-nowrap">
+        <div className="order-details flex-grow ml-4  sm:min-h-[125px] text-nowrap">
           <h4 className="text-[15px] lg:text-[28px] font-bold text-blue-950 md:text-2xl">
             {productName}
           </h4>

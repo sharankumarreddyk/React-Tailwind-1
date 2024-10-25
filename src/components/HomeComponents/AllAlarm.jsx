@@ -18,7 +18,7 @@ const AllAlarm = () => {
   };
 
   return (
-    <div className="col-span-3 p-4 lg:pl-14 px-4">
+    <div className="col-span-3 p-4  px-4">
       <header className="flex justify-between items-center mb-4">
         <div className="sm:flex justify-center md:space-x-2 items-center">
           <h2

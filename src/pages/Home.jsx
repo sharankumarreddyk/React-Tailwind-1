@@ -9,14 +9,16 @@ import Footer from "../components/Footer";
 function Home() {
   return (
     <section className="bg-white">
-      <Header />
+     
+      <div className="">
       <div className="lg:grid grid-cols-7  mb-2">
         <AllAlarm />
         <HomeMachines />
       </div>
       <UpcomingOrders />
       <HomeAppointments />
-      <Footer />
+      </div>
+      
     </section>
   );
 }
