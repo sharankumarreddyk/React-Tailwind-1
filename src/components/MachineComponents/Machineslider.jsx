@@ -95,8 +95,8 @@ const MachineSlider = ({ selectedMachineIndex, setSelectedMachineIndex }) => {
       <div className="sm:flex justify-between items-center">
         <h2 className="text-[#0F1C40] my-3 text-2xl sm:text-3xl md:text-5xl font-bold">Machines</h2>
         <div className="flex space-x-2 sm:space-x-3 mb-3">
-          <Dropdown buttonText="Machine Filter" options={["Product Pump", "Machine 2"]} />
-          <Dropdown buttonText="Department Name" options={["Department 1", "Department 2"]} />
+          <Dropdown id={5} buttonText="Machine Filter" options={["Product Pump", "Machine 2"]} />
+          <Dropdown id={6} buttonText="Department Name" options={["Department 1", "Department 2"]} />
         </div>
       </div>
 
@@ -113,7 +113,7 @@ const MachineSlider = ({ selectedMachineIndex, setSelectedMachineIndex }) => {
               <div
                 key={index}
                 onClick={() => handleImageClick(index)}
-                className={`relative transition-transform duration-300 ${selectedMachineIndex === index ? "transform scale-10" : ""}`}
+                className={`relative transition-transform duration-300 ${selectedMachineIndex === index ? "transform scale-105 shadow-lg" : ""}`}
               >
                 <ImageBox
                   title={machine.title}

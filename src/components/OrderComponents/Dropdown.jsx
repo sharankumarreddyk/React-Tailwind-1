@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-const Dropdown = ({ buttonText, options, isDateDropdown, customClass }) => {
+let activeDropdownId = null; // Static variable to track the active dropdown
+
+const Dropdown = ({ id, buttonText, options, isDateDropdown, customClass }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedOption, setSelectedOption] = useState(buttonText);
@@ -10,7 +12,16 @@ const Dropdown = ({ buttonText, options, isDateDropdown, customClass }) => {
   const [dropdownSize, setDropdownSize] = useState("w-full sm:w-48");
 
   const toggleDropdown = () => {
-    setIsOpen(!isOpen);
+    if (activeDropdownId && activeDropdownId !== id) {
+      // Close the currently open dropdown
+      const previousDropdown = document.getElementById(activeDropdownId);
+      if (previousDropdown) {
+        previousDropdown.style.display = "none"; // Hide the previous dropdown
+      }
+    }
+
+    setIsOpen(!isOpen); // Toggle the current dropdown
+    activeDropdownId = isOpen ? null : id; // Update the active dropdown ID
     if (isDateDropdown) {
       setDropdownSize("w-auto");
     } else {
@@ -24,12 +35,14 @@ const Dropdown = ({ buttonText, options, isDateDropdown, customClass }) => {
     setIsOpen(false);
     setDropdownSize("w-full sm:w-48");
     setIsSelected(true);
+    activeDropdownId = null; // Reset the active dropdown
   };
 
   const handleOptionClick = (option) => {
     setSelectedOption(option);
     setIsOpen(false);
     setIsSelected(true);
+    activeDropdownId = null; // Reset the active dropdown
   };
 
   const handleClearSelection = (e) => {
@@ -74,7 +87,7 @@ const Dropdown = ({ buttonText, options, isDateDropdown, customClass }) => {
 
       {isOpen && (
         <div
-          id="dropdownMenu"
+          id={id}
           className={`absolute mt-6 sm:mt-2 bg-white border border-blue-950 rounded-md shadow-lg max-w-xs sm:max-w-none ${dropdownSize} ${customClass}`}
         >
           {isDateDropdown ? (

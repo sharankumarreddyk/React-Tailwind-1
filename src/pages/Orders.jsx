@@ -153,16 +153,16 @@ const Orders = () => {
               />
             </div>
             <div className="col-span-12 sm:col-span-6 space-x-2 md:space-x-4 flex flex-row sm:flex-row sm:justify-end text-blue-950 mt-2 sm:mt-0">
-              <Dropdown
+              <Dropdown id={7}
                 buttonText="Date Filter"
                 options={["January 1, 2023", "January 2, 2023"]}
                 isDateDropdown={true}
               />
-              <Dropdown
+              <Dropdown id={8}
                 buttonText="Machine Filter"
                 options={["Product Pump", "Machine 2"]}
               />
-              <Dropdown
+              <Dropdown id={9}
                 buttonText="Department Name"
                 options={["Department 1", "Department 2"]}
               />

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import i1 from "../../assets/i1.png"; // Ensure the path is correct
 import i2 from "../../assets/i2.png"; // Ensure the path is correct
 import Parameters from "./Parameters";
@@ -6,9 +6,7 @@ import Parameters from "./Parameters";
 const ServiceBox = ({ title, temperature, param6, param7, unitRange, isDamaged, onClick }) => (
   <div
     onClick={onClick}
-    className={`absolute bg-white border ${
-      isDamaged ? "border-red-500" : "border-green-500"
-    } rounded-md p-2 shadow-lg w-42 cursor-pointer`}
+    className={`absolute bg-white border ${isDamaged ? "border-red-500" : "border-green-500"} rounded-md p-2 shadow-lg w-42 cursor-pointer z-10`}
   >
     <div className={`${isDamaged ? "text-red-500" : "text-blue-950"} font-bold text-md`}>
       {title}
@@ -36,10 +34,9 @@ const ServiceBox = ({ title, temperature, param6, param7, unitRange, isDamaged, 
 
 const MachineImage = ({ selectedMachineIndex }) => {
   const [visibleServiceBox, setVisibleServiceBox] = useState(null);
-
-  const toggleServiceBox = (boxId) => {
-    setVisibleServiceBox((prev) => (prev === boxId ? null : boxId));
-  };
+  const [positions, setPositions] = useState({});
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const imageRef = useRef(null);
 
   const machines = [
     {
@@ -56,44 +53,57 @@ const MachineImage = ({ selectedMachineIndex }) => {
       location: "A.A. Building 1.0",
       time: "340 h 23 m 20 s",
     },
-    {
-      title: "Venturi Dryer Alarm",
-      branch: "KLM Branch",
-      location: "J.K. Building 2.0",
-      time: "340 h 23 m 20 s",
-      imageSrc: i1,
-    },
-    {
-      title: "Venturi Dryer Alarm",
-      branch: "KLM Branch",
-      location: "J.K. Building 2.0",
-      time: "340 h 23 m 20 s",
-      imageSrc: i2,
-    },
-    {
-      title: "Venturi Dryer Alarm",
-      branch: "KLM Branch",
-      location: "J.K. Building 2.0",
-      time: "340 h 23 m 20 s",
-      imageSrc: i1,
-    },
-    {
-      title: "Venturi Dryer Alarm",
-      branch: "KLM Branch",
-      location: "J.K. Building 2.0",
-      time: "340 h 23 m 20 s",
-      imageSrc: i2,
-    },
-    {
-      title: "Venturi Dryer Alarm",
-      branch: "KLM Branch",
-      location: "J.K. Building 2.0",
-      time: "340 h 23 m 20 s",
-      imageSrc: i2,
-    },
+    // ... other machines
   ];
 
   const selectedMachine = machines[selectedMachineIndex];
+
+  const dynamicPositions = {
+    part1: { top: '10%', left: '10%' },
+    part2: { top: '40%', left: '60%' },
+    part3: { top: '45%', left: '75%' },
+    part4: { top: '60%', left: '85%' },
+    part5: { top: '12%', left: '35%' },
+  };
+
+  const fixedPositions = {
+    part1: { top: '15%', left: '30%' },
+    part2: { top: '25%', left: '20%' },
+    part3: { top: '50%', left: '20%' },
+    part4: { top: '65%', left: '12%' },
+    part5: { top: '10%', left: '56%' },
+  };
+
+  useEffect(() => {
+    const calculatePositions = () => {
+      const imageElement = imageRef.current;
+      if (imageElement) {
+        const { width, height } = imageElement.getBoundingClientRect();
+        const newPositions = selectedMachine.imageSrc === i2 ? fixedPositions : dynamicPositions;
+
+        // Adjust positions relative to the image size
+        const updatedPositions = Object.fromEntries(
+          Object.entries(newPositions).map(([key, pos]) => [
+            key,
+            {
+              top: `${(parseFloat(pos.top) / 100) * height}px`,
+              left: `${(parseFloat(pos.left) / 100) * width}px`,
+            },
+          ])
+        );
+
+        setPositions(updatedPositions);
+      }
+    };
+
+    if (imageLoaded) {
+      calculatePositions();
+    }
+  }, [selectedMachine, imageLoaded]);
+
+  const toggleServiceBox = (boxId) => {
+    setVisibleServiceBox((prev) => (prev === boxId ? null : boxId));
+  };
 
   return (
     <div className="p-4">
@@ -131,64 +141,39 @@ const MachineImage = ({ selectedMachineIndex }) => {
           </div>
 
           <div className="slide relative col-span-10 md:col-span-5 md:mt-5">
-            <img src={selectedMachine.imageSrc} alt={selectedMachine.title} className="w-fit h-auto" />
+            <img
+              src={selectedMachine.imageSrc}
+              alt={selectedMachine.title}
+              ref={imageRef}
+              onLoad={() => setImageLoaded(true)}
+              className="w-fit h-auto"
+            />
 
-            {/* Service Box and Pointer Group */}
-            <div className="absolute z-20 top-24 left-40 sm:top-20 sm:left-36 lg:top-40 lg:left-80 group ">
-              <button onClick={() => toggleServiceBox("part2")} className="bg-green-600 text-white rounded-full w-5 px-1 justify-center">X</button>
-              {visibleServiceBox === "part2" && (
-                <ServiceBox
-                  title="Part 2 Working"
-                  temperature="170°C"
-                  param6="175 Unit"
-                  unitRange="Between 50 and 100 Unit"
-                  onClick={() => toggleServiceBox("part2")}
-                />
-              )}
-            </div>
-
-            <div className="absolute top-32 left-24 sm:top-28 sm:left-16 lg:top-56 lg:left-52 group ">
-              <button onClick={() => toggleServiceBox("part3")} className="bg-green-600 text-white rounded-full w-5 px-1 justify-center">X</button>
-              {visibleServiceBox === "part3" && (
-                <ServiceBox
-                  title="Part 3 Working"
-                  temperature="170°C"
-                  param6="175 Unit"
-                  unitRange="Between 100 and 200 Unit"
-                  onClick={() => toggleServiceBox("part3")}
-                />
-              )}
-            </div>
-
-            <div className="absolute top-36 left-12 sm:top-40 sm:left-12 lg:top-1/2 lg:left-24 group ">
-              <button onClick={() => toggleServiceBox("part4")} className="bg-green-600 text-white rounded-full w-5 px-1 justify-center">X</button>
-              {visibleServiceBox === "part4" && (
-                <ServiceBox
-                  title="Part 4 Working"
-                  temperature="170°C"
-                  param6="3.24 Unit"
-                  unitRange="Between 3.00 and 4.00 Unit"
-                  onClick={() => toggleServiceBox("part4")}
-                />
-              )}
-            </div>
-
-            <div className="absolute z-20 top-8 left-52 sm:top-6 sm:right-36 lg:top-16 lg:left-2/4 group ">
-              <button onClick={() => toggleServiceBox("part5")} className="bg-green-600 text-white rounded-full w-5 px-1 justify-center">X</button>
-              {visibleServiceBox === "part5" && (
-                <ServiceBox
-                  title="Part 5 Working"
-                  temperature="170°C"
-                  param6="55 Unit"
-                  unitRange="Between 50 and 100 Unit"
-                  onClick={() => toggleServiceBox("part5")}
-                />
-              )}
-            </div>
+            {/* Service Boxes */}
+            {Object.keys(positions).map((part) => (
+              part !== "part1" && (
+                <div
+                  key={part}
+                  className={`absolute group`}
+                  style={{ top: positions[part].top, left: positions[part].left }}
+                >
+                  <button onClick={() => toggleServiceBox(part)} className="bg-green-600 text-white rounded-full w-5 px-1 justify-center z-10">X</button>
+                  {visibleServiceBox === part && (
+                    <ServiceBox
+                      title={`Part ${part.charAt(part.length - 1)} Working`}
+                      temperature="170°C"
+                      param6="175 Unit"
+                      unitRange="Between 50 and 100 Unit"
+                      onClick={() => toggleServiceBox(part)}
+                    />
+                  )}
+                </div>
+              )
+            ))}
 
             {/* Damaged Part */}
-            <div className="absolute top-28 right-32 sm:top-24 sm:right-24 lg:top-52 lg:right-52 group ">
-              <button onClick={() => toggleServiceBox("part1")} className="bg-red-600 text-white rounded-full w-5 px-1 justify-center">X</button>
+            <div className="absolute top-28 right-32 sm:top-24 sm:right-24 lg:top-52 lg:right-52 group">
+              <button onClick={() => toggleServiceBox("part1")} className="bg-red-600 text-white rounded-full w-5 px-1 justify-center z-10">X</button>
               {visibleServiceBox === "part1" && (
                 <div className="absolute mt-5 z-20 bg-white border border-red-500 text-red-500 rounded-md p-2 shadow-lg">
                   <div className="flex justify-between text-red-500 mt-2 font-bold text-md">
@@ -231,7 +216,7 @@ const MachineImage = ({ selectedMachineIndex }) => {
             </div>
           </div>
 
-          <div className="md:col-span-3 col-span-10 ">
+          <div className="md:col-span-3 col-span-10">
             <Parameters />
           </div>
         </div>
