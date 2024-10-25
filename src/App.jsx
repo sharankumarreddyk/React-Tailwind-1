@@ -16,7 +16,7 @@ function App() {
     <Router>
       <div className='bg-white'>
         <Header />
-        <main className='px-16'>
+        <main className='lg:px-16 px-4 sm:px-8'>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/Machines" element={<Machines />} />
