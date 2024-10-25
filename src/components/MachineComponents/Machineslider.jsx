@@ -76,7 +76,7 @@ const MachineSlider = ({ selectedMachineIndex, setSelectedMachineIndex }) => {
 
   const scroll = (direction) => {
     if (imageContainerRef.current) {
-      const scrollAmount = 350;
+      const scrollAmount = 390;
       const scrollValue = direction === "left" ? -scrollAmount : scrollAmount;
       imageContainerRef.current.scrollBy({
         left: scrollValue,

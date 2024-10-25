@@ -59,7 +59,7 @@ const Slider = ({ selectedService }) => {
         lg: {
             1: { top: '210px', left: '640px' },
             2: { top: '190px', left: '185px' },
-            3: { top: '80px', left: '320px' },
+            3: { top: '80px', left: '310px' },
             4: { top: '240px', left: '450px' },
         },
         md: {
