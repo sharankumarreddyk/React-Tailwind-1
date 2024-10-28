@@ -129,7 +129,7 @@ const MachineSlider = ({ selectedMachineIndex, setSelectedMachineIndex }) => {
 
         <div
           ref={imageContainerRef}
-          className="overflow-x-auto bg-white border border-white py-8 sm:py-12 px-4 mr-16 hide-scrollbar sm:rounded-md"
+          className="overflow-x-auto bg-white border border-white py-8 sm:py-12 px-4 pr-16 hide-scrollbar sm:rounded-md"
         >
           <div className="flex space-x-4 sm:space-x-6 pl-2 pr-8 sm:pl-20 sm:pr-20">
             {machines.map((machine, index) => (
@@ -196,7 +196,7 @@ const MachineSlider = ({ selectedMachineIndex, setSelectedMachineIndex }) => {
           </div>
         </div>
 
-        <div className="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 sm:bg-white sm:py-40">
+        <div className="absolute right-0 top-1/2 transform -translate-y-1/2 z-20  sm:bg-white sm:py-40">
           <button
             onClick={() => scroll("right")}
             className="justify-center font-bold text-center p-2 sm:p-3 px-2 sm:px-4 lg:px-2 rounded-md text-xs sm:text-sm lg:text-lg"
