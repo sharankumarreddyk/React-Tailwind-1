@@ -60,6 +60,7 @@ const Dropdown = ({ id, buttonText, options, isDateDropdown, customClass }) => {
         className="flex justify-between items-center p-1 md:px-2 rounded-md border-2 border-blue-950 text-sm font-medium text-[#0F1C40] hover:bg-gray-50 focus:outline-none overflow-hidden w-full sm:w-auto"
       >
         <span className="flex items-center">{selectedOption}</span>
+        <div className="sm:flex">
         <span className="material-symbols-outlined md:ml-4">expand_circle_down</span>
         {isSelected && (
           <span
@@ -83,7 +84,9 @@ const Dropdown = ({ id, buttonText, options, isDateDropdown, customClass }) => {
             </svg>
           </span>
           
+          
         )}
+        </div>
       </button>
 
       {isOpen && (

@@ -169,7 +169,7 @@ const Orders = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-12 sm:mt-5 mt-10">
+          <div className="grid grid-cols-12 sm:mt-14 mt-10">
             <div className="col-span-12 lg:col-span-5 lg:w-[547px] sm:px-8 shadow-xl">
               {filteredOrders.map((order, index) => (
                 <OrderItem
