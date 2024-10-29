@@ -43,15 +43,15 @@ const Slider = ({ selectedService }) => {
         },
         {
             src: i2,
-            services: [], // Add services if needed for the second slide
+            services: [],
         },
         {
             src: i1,
-            services: [], // Add services if needed for the third slide
+            services: [],
         },
         {
             src: i2,
-            services: [], // Add services if needed for the fourth slide
+            services: [],
         },
     ];
 
@@ -69,9 +69,9 @@ const Slider = ({ selectedService }) => {
             4: { top: '130px', left: '200px' },
         },
         sm: {
-            1: { top: '110px', left: '290px' },
-            2: { top: '90px', left: '80px' },
-            3: { top: '50px', left: '200px' },
+            1: { top: '110px', left: '250px' },
+            2: { top: '85px', left: '100px' },
+            3: { top: '55px', left: '200px' },
             4: { top: '110px', left: '200px' },
         },
     };
@@ -109,15 +109,19 @@ const Slider = ({ selectedService }) => {
         setActiveServiceId((prevId) => (prevId === id ? null : id));
     };
 
+    const handleCancelClick = () => {
+        setActiveServiceId(null); // Close the active service details
+    };
+
     return (
-        <div className="container lg:mt-20 mx-auto">
+        <div className="container lg:mt-20 mt-4 mx-auto">
             <div className="slider relative w-full max-w-4xl overflow-hidden">
                 <div
                     className="slides flex transition-transform duration-500"
                     style={{ transform: `translateX(-${currentIndex * 100}%)` }}
                 >
                     {slides.map((slide, slideIndex) => (
-                        <div className="slide relative flex-shrink-0 w-full" key={slideIndex}>
+                        <div className="slide relative z-20 flex-shrink-0 w-full" key={slideIndex}>
                             <img src={slide.src} alt={`Image ${slideIndex + 1}`} className="w-full h-auto" />
                             {slide.services.map((service) => {
                                 const { top, left } = positionStyles[screenSize][service.id] || { top: '10px', left: '10px' };
@@ -126,7 +130,7 @@ const Slider = ({ selectedService }) => {
                                         <div className="relative">
                                             <button
                                                 onClick={() => handleServiceClick(service.id)}
-                                                className={`w-5 h-5 rounded-full flex items-center justify-center text-white ${service.id === 4 ? 'bg-red-600' : 'bg-green-600'}`}
+                                                className={`w-5 h-5 rounded-full  flex items-center justify-center text-white ${service.id === 4 ? 'bg-red-600' : 'bg-green-600'}`}
                                                 style={{
                                                     position: 'absolute',
                                                     top: '100%',
@@ -141,7 +145,13 @@ const Slider = ({ selectedService }) => {
                                                 <div className={`absolute z-20 bg-white rounded-md p-4 shadow-lg w-40`} style={{
                                                     top: `-60px`,
                                                     left: '-80px',
-                                                }} onClick={() => handleServiceClick(service.id)}>
+                                                }}>
+                                                    <button
+                                                        onClick={handleCancelClick}
+                                                        className="absolute top-2 left-2 text-red-400 font-bold  ring-offset-1 rounded-full w-4 text-xs ring-red-400 ring-2 cursor-pointer"
+                                                    >
+                                                        &times; {/* Cancel button */}
+                                                    </button>
                                                     <div className={`font-bold mt-3 text-md ${service.id === 4 ? 'text-red-600' : 'text-[#0F1C40]'}`}>
                                                         Service {service.id}
                                                     </div>
@@ -176,7 +186,7 @@ const Slider = ({ selectedService }) => {
                         <div
                             key={index}
                             className={`dot w-3 h-3 bg-gray-400 rounded-full transition-opacity duration-300 ${index === currentIndex ? 'opacity-100' : 'opacity-30'}`}
-                            onClick={() => setCurrentIndex(index)} // Set current index on dot click
+                            onClick={() => setCurrentIndex(index)}
                         ></div>
                     ))}
                 </div>

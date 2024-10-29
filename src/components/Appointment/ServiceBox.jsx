@@ -82,11 +82,11 @@ const ServiceBox = ({ activeService, onSelectService }) => {
 
     return (
         <div className="flex flex-col w-full bg-white rounded-lg overflow-auto lg:min-h-[1220px]">
-            <div className="flex-grow mt-0 p-1">
+            <div className="flex-grow mt-0 ">
                 {services[activeService].map((service, index) => (
                     <div
                         key={index}
-                        className={`grid grid-cols-1 mt-4 lg:grid-cols-8 border-b cursor-pointer ${
+                        className={`grid grid-cols-1  lg:grid-cols-8 border-b cursor-pointer ${
                             service.selected ? "bg-white" : ""
                         }`}
                         onClick={() => handleSelectService(index)}

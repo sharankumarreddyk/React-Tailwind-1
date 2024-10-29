@@ -10,11 +10,11 @@ const ServiceFilter = ({ onTabChange }) => {
   };
 
   return (
-    <div className="mx-auto px-4 sm:px-6 mb-10 lg:ml-5 ">
+    <div className="mx-auto px-4 sm:px-0 mb-10  ">
       <div className="grid grid-cols-12 sm:mt-8 mt-2">
         <div className="col-span-12 sm:col-span-6 flex flex-row sm:flex-row ">
           <button
-            className={`px-3 py-2 m-1 md:text-xs md:px-1 md:space-x-0 lg:text-[15px] lg:w-[150px] lg:h-[34px] font-bold rounded text-sm border lg:text-nowrap ${
+            className={` py-2 m-1 md:text-xs  md:space-x-0 lg:text-[15px] lg:w-[150px] lg:h-[34px] font-bold rounded text-sm border lg:text-nowrap ${
               activeTab === "active"
                 ? "bg-[#0F1C40] text-white"
                 : "text-[#0F1C40] border-[#0F1C40]"

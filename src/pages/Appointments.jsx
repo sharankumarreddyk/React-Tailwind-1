@@ -24,21 +24,21 @@ const ServiceManagement = () => {
   return (
     <>
       
-      <div className="w-full ml-1 p-2  m-0 bg-white">
+      <div className="w-full bg-white">
         {/* Service Filter */}
         <ServiceFilter onTabChange={handleTabChange} />
 
         {/* Grid Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mt-6 ">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-4  ">
           {/* Service Box - taking 2 columns */}
-          <div className="col-span-2">
+          <div className="col-span-5 pr-1">
             <div className="bg-white rounded-lg shadow-lg p-4">
               <ServiceBox activeService={activeService} onSelectService={handleSelectService} />
             </div>
           </div>
 
           {/* Slider Component - taking 3 columns */}
-          <div className="col-span-3">
+          <div className="col-span-7 ">
             <Slider selectedService={selectedService} />
           </div>
         </div>

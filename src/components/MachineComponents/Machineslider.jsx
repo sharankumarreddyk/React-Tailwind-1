@@ -69,7 +69,14 @@ const MachineSlider = ({ selectedMachineIndex, setSelectedMachineIndex }) => {
 
   const scroll = (direction) => {
     if (imageContainerRef.current) {
-      const scrollAmount = 390;
+      // Determine scroll amount based on screen size
+      let scrollAmount;
+      if (window.innerWidth < 640) { // For small screens
+          scrollAmount = 300; // Adjust as needed
+      }  else { // For large screens
+          scrollAmount = 290; // Default for large screens
+      }
+
       const scrollValue = direction === "left" ? -scrollAmount : scrollAmount;
       imageContainerRef.current.scrollBy({
         left: scrollValue,
@@ -85,6 +92,10 @@ const MachineSlider = ({ selectedMachineIndex, setSelectedMachineIndex }) => {
 
   const toggleServiceBox = (part) => {
     setVisibleServiceBox(visibleServiceBox === part ? null : part);
+  };
+  const onClose = () => {
+    // This should change the state to hide the service box
+    setVisibleServiceBox(null); // Adjust according to your state management
   };
 
   return (
@@ -138,7 +149,7 @@ const MachineSlider = ({ selectedMachineIndex, setSelectedMachineIndex }) => {
                   imageSrc={machine.imageSrc}
                 />
                 {index === 1 && (
-                  <div className="absolute top-20 sm:top-28 right-20 sm:right-32 group">
+                  <div className="absolute top-24 sm:top-28 left-20 sm:right-32 group">
                     <button
                       onClick={(e) => {
                         e.stopPropagation();
@@ -149,8 +160,9 @@ const MachineSlider = ({ selectedMachineIndex, setSelectedMachineIndex }) => {
                       X
                     </button>
                     {visibleServiceBox === "part1" && (
-                      <div className="absolute mt-5 z-20 bg-white border border-red-500 text-red-500 rounded-md p-2 shadow-lg">
-                        <div className="flex justify-between text-red-500 mt-2 font-bold text-md">
+                      <div className="absolute mt-5 z-100 bg-white border border-red-500 text-red-500 rounded-md p-2 shadow-lg">
+                        <button onClick={onClose} className="absolute top-1 right-1 text-red-400 font-bold ring-offset-1 rounded-full w-4 text-xs ring-red-400 ring-2">X</button>
+                        <div className="flex justify-between text-red-500 mt-3 font-bold text-md">
                           Part 1 <p>Damage</p>
                         </div>
                         <div className="flex">
