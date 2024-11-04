@@ -35,22 +35,22 @@ function HomeMachines() {
               </div>
             </div>
 
-            <div className="md:flex  md:space-x-12 lg:space-x-2 xl:space-x-4 space-x-6 mt-4 md:visible hidden ">
+            <div className="md:flex lg:pl-5  md:space-x-12 lg:space-x-4 xl:space-x-4 space-x-6 mt-4 md:visible hidden ">
               <div className="flex-2 text-[#0F1C40] text-start lg:scale-90 xl:scale-100">
                 <p className="text-xs font-semibold">Branch</p>
-                <p className="text-lg">KLM Branch</p>
+                <p className="text-md">KLM Branch</p>
               </div>
               <div className="flex-2 text-[#0F1C40] text-start lg:scale-90 xl:scale-100">
                 <p className="text-xs font-semibold">Location</p>
-                <p className="text-lg">J.K. Building 2.0</p>
+                <p className="text-md">J.K. Building 2.0</p>
               </div>
               <div className="flex-2 text-[#0F1C40] text-start lg:scale-90 xl:scale-100">
                 <p className="text-xs font-semibold">Running time</p>
-                <p className="text-lg font-bold">340 h 23 m 20 s</p>
+                <p className="text-md font-bold">340 h 23 m 20 s</p>
               </div>
               <div className="flex-2 text-[#FF3334] text-start lg:scale-90 xl:scale-100 ">
                 <p className="text-xs font-semibold">Down time</p>
-                <p className="text-lg font-bold">3 h 15 m 10 s</p>
+                <p className="text-md font-bold">3 h 15 m 10 s</p>
               </div>
             </div>
           </div>

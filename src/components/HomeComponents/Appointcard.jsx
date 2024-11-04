@@ -40,7 +40,7 @@ function Appointcard({ Product, Name }) {
                 clipRule="evenodd"
               />
             </svg>
-            <p className="sm:text-sm text-xs font-bold">{Name}</p>
+            <p className="sm:text-sm text-xs font-extrabold">{Name}</p>
           </div>
           <div className="text-[#0F1C40] bg-white rounded-full flex items-center space-x-2 p-2">
             {/* Location Icon */}
@@ -56,10 +56,10 @@ function Appointcard({ Product, Name }) {
                 clipRule="evenodd"
               />
             </svg>
-            <p className="sm:text-sm text-xs font-bold">Location</p>
+            <p className="sm:text-sm text-xs font-extrabold ">Location</p>
           </div>
           <div>
-            <button className="bg-white border-2 sm:h-10 h-9 border-blue-950 text-[#0F1C40] rounded-lg sm:px-4 sm:py-1 px-2 sm:text-sm text-xs font-bold hover:bg-gray-100">
+            <button className="bg-white border-[1px] h-9 border-blue-950 text-[#0F1C40] rounded-lg sm:px-5 sm:py-1 px-2 sm:text-base text-xs  hover:bg-gray-100">
               Details
             </button>
           </div>

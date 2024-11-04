@@ -37,8 +37,8 @@ const UpcomingOrders = () => {
             </div>
           </div>
 
-          <div className="col-span-7 overflow-x-auto">
-            <OrderStatus bgColor={"bg-[#008E28]"} />
+          <div className="col-span-7 overflow-x-auto  ">
+            <OrderStatus bgColor={"bg-[#008E28]"}  />
           </div>
 
           <div className="col-span-1 mt-2 lg:mt-0">
@@ -46,7 +46,7 @@ const UpcomingOrders = () => {
           </div>
         </div>
 
-        <hr className="border-2 border-gray-300 mb-4"></hr>
+        <hr className="border-spacing-1.5 border-gray-300 mb-4"></hr>
 
         <div className="grid lg:grid-cols-12 mb-4">
           <div className="col-span-4 grid sm:grid-cols-5 mb-3 lg:mr-2">

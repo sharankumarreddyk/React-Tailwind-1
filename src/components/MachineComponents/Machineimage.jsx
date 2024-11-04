@@ -159,7 +159,7 @@ const MachineImage = ({ selectedMachineIndex }) => {
       <div>
         <div className="grid  md:grid-cols-10">
           <div className="col-span-10 z-10 md:col-span-2  ">
-            <div className="space-y-4 sm:pl-6 sm:px-0 sm:py-4 sm:pr-14  sm:w-fit px-28 py-5 shadow-lg shadow-gray-400 bg-white border-2 border-white rounded-md">
+            <div className="space-y-4 w-full sm:pl-6 sm:px-0 sm:py-4 sm:pr-14  sm:w-fit pl-16 my-5 place-items-start shadow-md md:shadow-gray-400 bg-white border-2 border-white rounded-md">
               <h2 className="text-[#0F1C40] text-2xl font-bold">Details</h2>
               <div className="flex-2 text-[#0F1C40] text-start">
                 <p className="text-xs font-semibold">Branch</p>

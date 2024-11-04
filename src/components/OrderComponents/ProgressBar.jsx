@@ -2,7 +2,7 @@ import React from "react";
 
 const ProgressBar = ({ steps }) => {
   return (
-    <div className="flex flex-col w-full  p-4 mt-10 bg-white rounded-lg shadow-lg overflow-hidden ">
+    <div className="flex flex-col w-full  p-4 mt-10  rounded-lg  overflow-hidden ">
       <div className="col-span-12 overflow-x-auto xl:overflow-hidden shadow-md rounded-lg border-2 border-[#008E28] p-0">
         {/* Progress Bar Container */}
         <div className="min-w-[900px] md:min-w-full bg-white ">
