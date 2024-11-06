@@ -47,7 +47,7 @@ const AllAlarm = () => {
           </div>
         </div>
 
-        <div className="flex md:space-x-6  space-x-1">
+        <div className="flex md:space-x-6 space-x-1">
           <Dropdown buttonText="Today" options={[]} isDateDropdown={true} customClass="right-0" />
 
           <button className="bg-[#0F1C40] justify-center  text-xs font-semibold text-center items-center text-white p-1 px-3 rounded-md">

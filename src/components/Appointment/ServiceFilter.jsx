@@ -10,7 +10,7 @@ const ServiceFilter = ({ onTabChange }) => {
   };
 
   return (
-    <div className="mx-auto px-4 sm:px-0 mb-10  ">
+    <div className="mx-auto  sm:px-0 mb-10  ">
       <div className="grid grid-cols-12 sm:mt-8 mt-2">
         <div className="col-span-12 sm:col-span-6 flex flex-row sm:flex-row ">
           <button

@@ -37,8 +37,17 @@ const UpcomingOrders = () => {
             </div>
           </div>
 
-          <div className="col-span-7 overflow-x-auto  ">
-            <OrderStatus bgColor={"bg-[#008E28]"}  />
+          <div
+            className="col-span-7 overflow-x-auto"
+            style={{
+              border: "2px solid",
+
+              borderImageSource:
+                "linear-gradient(90deg, #008E28 75%, #D9D9D9 84%)",
+              borderImageSlice: "1",
+            }}
+          >
+            <OrderStatus bgColor={"bg-[#008E28]"} />
           </div>
 
           <div className="col-span-1 mt-2 lg:mt-0">
@@ -46,7 +55,7 @@ const UpcomingOrders = () => {
           </div>
         </div>
 
-        <hr className="border-spacing-1.5 border-gray-300 mb-4"></hr>
+        <hr className="border-2 border-gray-300 mb-4"></hr>
 
         <div className="grid lg:grid-cols-12 mb-4">
           <div className="col-span-4 grid sm:grid-cols-5 mb-3 lg:mr-2">
@@ -73,7 +82,15 @@ const UpcomingOrders = () => {
             </div>
           </div>
 
-          <div className="col-span-7 overflow-x-auto">
+          <div
+            className="col-span-7 overflow-x-auto "
+            style={{
+              border: "2px solid",
+              borderImageSource:
+                "linear-gradient(90deg, #008E28 34%, #D9D9D9 60.5%)",
+              borderImageSlice: "1",
+            }}
+          >
             {/* Progress Bar Container */}
 
             <OrderStatus bgColor={"bg-gray-300"} />
