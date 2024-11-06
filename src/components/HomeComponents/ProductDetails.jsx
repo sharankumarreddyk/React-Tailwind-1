@@ -4,7 +4,7 @@ function ProductDetails({Name , Status}) {
   return (
     <>
         <div className="flex  items-center ">
-                                    <div className="flex justify-center space-x-1 max-w-20 items-center">
+                                    <div className="flex justify-center space-x-1 max-w-26 items-center">
                                         <h2 className="text-[#0F1C40] text-[20px] font-extrabold">{Name}</h2>
                                     </div>
                                     <div className="flex pl-3 sm:pl-6 space-x-1">
