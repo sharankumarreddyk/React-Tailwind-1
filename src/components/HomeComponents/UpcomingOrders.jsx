@@ -38,8 +38,9 @@ const UpcomingOrders = () => {
           </div>
 
           <div
-            className="col-span-7 overflow-x-auto"
+            className="col-span-7 overflow-x-auto max-h-max"
             style={{
+
               border: "2px solid",
 
               borderImageSource:
@@ -83,7 +84,7 @@ const UpcomingOrders = () => {
           </div>
 
           <div
-            className="col-span-7 overflow-x-auto "
+            className="col-span-7 overflow-x-auto max-h-max "
             style={{
               border: "2px solid",
               borderImageSource:

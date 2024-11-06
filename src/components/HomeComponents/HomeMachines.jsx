@@ -81,8 +81,8 @@ function HomeMachines() {
         </div>
 
         {/* Supercooling system parameters */}
-        <div className="md:grid md:space-y-0 space-y-4 xl:grid-cols-7 md:grid-cols-5 gap-4">
-          <div className="bg-gray-100 xl:col-span-3 md:col-span-2 grid grid-cols-3 gap-1 md:p-1 p-2 border-2 border-blue-950 rounded-md">
+        <div className="md:grid md:space-y-0 space-y-4 xl:grid-cols-7 md:grid-cols-5  gap-4">
+          <div className="bg-gray-100 xl:col-span-3 md:col-span-2 grid grid-cols-3  gap-1 md:p-1 p-2 border-2 border-blue-950 rounded-md">
             {/* Parameters */}
             {[
               { label: 'Temp', value: '105 °C', color: '#FF3334', checkId: 'toggleOne' },
@@ -99,8 +99,8 @@ function HomeMachines() {
                 <div className="flex justify-between">
                   <p className="text-xs font-medium">{label}</p>
                   {checkId && (
-                    <label htmlFor={checkId} className="flex items-center cursor-pointer select-none text-dark dark:text-white">
-                      <div className="relative mr-4 scale-75">
+                    <label htmlFor={checkId} className="flex items-center cursor-pointer select-none text-dark  dark:text-white">
+                      <div className="relative mr-4 scale-75 ">
                         <input type="checkbox" id={checkId} className="peer sr-only" />
                         <div className={`block h-4 w-6 rounded-full bg-gray-400 dark:bg-dark-2 peer-checked:${color === '#FFB800' ? 'bg-[#FFB800]' : color === '#FF3334' ? 'bg-[#FF3334]' : 'bg-[#0F1C40]'}`}></div>
                         <div className="absolute flex items-center justify-center h-2 w-2 transition bg-white rounded-full dot left-1 top-1 dark:bg-dark-5 peer-checked:translate-x-full peer-checked:bg-white peer-checked:dark:bg-white"></div>
