@@ -2,8 +2,6 @@ import { useState } from "react";
 import ServiceFilter from "../components/Appointment/ServiceFilter";
 import ServiceBox from "../components/Appointment/ServiceBox";
 import Slider from "../components/Appointment/Slider";
-import Footer from "../components/Footer";
-import Header from "../components/Header";
 import i1 from "../assets/i1.png"; // Adjust path as needed
 
 const ServiceManagement = () => {
@@ -31,7 +29,7 @@ const ServiceManagement = () => {
         {/* Grid Layout */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-4  ">
           {/* Service Box - taking 2 columns */}
-          <div className="col-span-5 pr-1">
+          <div className="col-span-5 xl:w-[547px] pr-1">
             <div className="bg-white rounded-lg shadow-lg p-4">
               <ServiceBox activeService={activeService} onSelectService={handleSelectService} />
             </div>

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-let activeDropdownId = null; // Static variable to track the active dropdown
+let activeDropdownId = null;
 
 const Dropdown = ({ id, buttonText, options, isDateDropdown, customClass }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,20 +13,14 @@ const Dropdown = ({ id, buttonText, options, isDateDropdown, customClass }) => {
 
   const toggleDropdown = () => {
     if (activeDropdownId && activeDropdownId !== id) {
-      // Close the currently open dropdown
       const previousDropdown = document.getElementById(activeDropdownId);
       if (previousDropdown) {
-        previousDropdown.style.display = "none"; // Hide the previous dropdown
+        previousDropdown.style.display = "none";
       }
     }
-
-    setIsOpen(!isOpen); // Toggle the current dropdown
-    activeDropdownId = isOpen ? null : id; // Update the active dropdown ID
-    if (isDateDropdown) {
-      setDropdownSize("w-auto");
-    } else {
-      setDropdownSize("w-full sm:w-48");
-    }
+    setIsOpen(!isOpen);
+    activeDropdownId = isOpen ? null : id;
+    setDropdownSize(isDateDropdown ? "w-auto" : "w-full sm:w-48");
   };
 
   const handleDateChange = (date) => {
@@ -35,37 +29,37 @@ const Dropdown = ({ id, buttonText, options, isDateDropdown, customClass }) => {
     setIsOpen(false);
     setDropdownSize("w-full sm:w-48");
     setIsSelected(true);
-    activeDropdownId = null; // Reset the active dropdown
+    activeDropdownId = null;
   };
 
   const handleOptionClick = (option) => {
     setSelectedOption(option);
     setIsOpen(false);
     setIsSelected(true);
-    activeDropdownId = null; // Reset the active dropdown
+    activeDropdownId = null;
   };
 
   const handleClearSelection = (e) => {
-    e.stopPropagation(); // Prevent the dropdown from closing when clicking the clear icon
+    e.stopPropagation();
     setSelectedDate(null);
     setSelectedOption(buttonText);
     setIsSelected(false);
   };
 
   return (
-    <div className="relative inline-block text-left w-full sm:w-auto z-50 ">
+    <div className="relative inline-block text-left w-full sm:w-auto z-50">
       <button
         id="dropdownButton"
         onClick={toggleDropdown}
-        className="md:flex justify-between items-center p-1 lg:px-2 rounded-md border-[1px] border-blue-950 text-[12px] font-light text-[#0F1C40] hover:bg-gray-50 focus:outline-none overflow-hidden w-full sm:w-auto  "
+        className="md:flex justify-between items-center p-1 lg:px-2 rounded-md border-[1px] border-blue-950 text-[12px] font-light text-[#0F1C40] hover:bg-gray-50 focus:outline-none overflow-hidden w-full sm:w-auto"
       >
         <span className="flex justify-center">{selectedOption}</span>
-        <div className="flex sm:items-end justify-center ">
+        <div className="flex sm:items-end justify-center">
           <svg
             viewBox="0 0 24 24"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            className=" lg:ml-5   w-[28px] h-[24px]"
+            className="lg:ml-5 w-[28px] h-[24px]"
           >
             <path
               d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
@@ -121,7 +115,11 @@ const Dropdown = ({ id, buttonText, options, isDateDropdown, customClass }) => {
       {isOpen && (
         <div
           id={id}
-          className={`absolute mt-6 sm:mt-2 bg-white border border-blue-950 rounded-md shadow-lg max-w-xs sm:max-w-none ${dropdownSize} ${customClass} max-h-60 overflow-y-auto`}
+          className={`absolute mt-6 sm:mt-2 bg-white border border-blue-950 rounded-md shadow-lg max-w-xs sm:max-w-none ${dropdownSize} ${customClass} max-h-60 overflow-y-auto scrollbar-hide`}
+          style={{
+            scrollbarWidth: "none",
+            msOverflowStyle: "none",
+          }}
         >
           {isDateDropdown ? (
             <DatePicker

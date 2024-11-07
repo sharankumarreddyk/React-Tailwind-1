@@ -12,7 +12,7 @@ const OrderItem = ({
   selected,
 }) => {
   return (
-    <>
+    <div >
       <img
         src={imageSrc}
         alt={productName}
@@ -30,7 +30,7 @@ const OrderItem = ({
           className="w-[140px] h-[120px] object-fill sm:block hidden"
         />
         {/* Product Details Section */}
-        <div className="order-details flex-grow ml-4  sm:min-h-[125px] text-nowrap">
+        <div className="order-details space-y-2 flex-grow ml-4  sm:min-h-[125px] text-nowrap">
           <h4 className="text-[15px] lg:text-[28px] font-bold text-blue-950 md:text-2xl">
             {productName}
           </h4>
@@ -49,7 +49,7 @@ const OrderItem = ({
         </div>
 
         {/* Price Section */}
-        <div className="order-summary text-right text-nowrap">
+        <div className="order-summary space-y-2 text-right text-nowrap">
           <p className="text-xs lg:text-[10px] md:text-xl lg:mt-10 text-blue-950 font-semibold">
             Full Price
           </p>
@@ -68,7 +68,7 @@ const OrderItem = ({
           </div>
         )}
       </div>
-    </>
+    </div>
   );
 };
 
