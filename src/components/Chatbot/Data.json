@@ -1,0 +1,92 @@
+{
+    "columns": [
+      { "title": "Month", "data": "month" },
+      { "title": "Car Model", "data": "carModel" },
+      { "title": "Car Variant", "data": "carVariant" },
+      { "title": "Fuel Type", "data": "fuelType" },
+      { "title": "Units Sold", "data": "unitsSold" },
+      { "title": "Unit Price ($)", "data": "unitPrice" },
+      { "title": "Total Revenue ($)", "data": "totalRevenue" },
+      { "title": "Sales Region", "data": "salesRegion" },
+      { "title": "Sales Rep", "data": "salesRep" },
+      { "title": "Sales Channel", "data": "salesChannel" }
+    ],
+    "data": [
+      {
+        "month": "January",
+        "carModel": "Honda Civic",
+        "carVariant": "2018 EX",
+        "fuelType": "Petrol",
+        "unitsSold": 12,
+        "unitPrice": 18000,
+        "totalRevenue": 216000,
+        "salesRegion": "California",
+        "salesRep": "Michael Johnson",
+        "salesChannel": "Dealership"
+      },
+      {
+        "month": "January",
+        "carModel": "Toyota Corolla",
+        "carVariant": "2017 LE",
+        "fuelType": "Hybrid",
+        "unitsSold": 8,
+        "unitPrice": 15000,
+        "totalRevenue": 120000,
+        "salesRegion": "Texas",
+        "salesRep": "Sarah Green",
+        "salesChannel": "Online"
+      },
+      {
+        "month": "February",
+        "carModel": "Ford F-150",
+        "carVariant": "2015 XLT",
+        "fuelType": "Diesel",
+        "unitsSold": 5,
+        "unitPrice": 22000,
+        "totalRevenue": 110000,
+        "salesRegion": "Florida",
+        "salesRep": "David Brown",
+        "salesChannel": "Dealership"
+      },
+      {
+        "month": "February",
+        "carModel": "Chevrolet Malibu",
+        "carVariant": "2016 LT",
+        "fuelType": "Petrol",
+        "unitsSold": 7,
+        "unitPrice": 13000,
+        "totalRevenue": 91000,
+        "salesRegion": "New York",
+        "salesRep": "Jessica White",
+        "salesChannel": "Online"
+      },
+      {
+        "month": "March",
+        "carModel": "Nissan Altima",
+        "carVariant": "2019 S",
+        "fuelType": "Petrol",
+        "unitsSold": 10,
+        "unitPrice": 20000,
+        "totalRevenue": 200000,
+        "salesRegion": "Illinois",
+        "salesRep": "Ryan Davis",
+        "salesChannel": "Dealership"
+      },
+      {
+        "month": "March",
+        "carModel": "BMW 3 Series",
+        "carVariant": "2014 328i",
+        "fuelType": "Diesel",
+        "unitsSold": 4,
+        "unitPrice": 25000,
+        "totalRevenue": 100000,
+        "salesRegion": "Nevada",
+        "salesRep": "Emily Martinez",
+        "salesChannel": "Dealership"
+      }
+    ]
+  }
+
+  
+
+  

@@ -27,7 +27,7 @@ const ServiceManagement = () => {
         <ServiceFilter onTabChange={handleTabChange} />
 
         {/* Grid Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-4  ">
+        <div className="grid grid-cols-1 md:grid-cols-12 sm:gap-4  ">
           {/* Service Box - taking 2 columns */}
           <div className="col-span-5 xl:w-[547px] pr-1">
             <div className="bg-white rounded-lg shadow-lg p-4">
