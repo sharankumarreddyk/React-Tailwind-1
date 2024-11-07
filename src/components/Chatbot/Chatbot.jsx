@@ -1,8 +1,7 @@
-import React, { useState, useEffect , useRef} from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { CSVLink } from "react-csv";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
-import data from "./data.json";
 
 const Chatbot = () => {
   // State management
@@ -12,25 +11,39 @@ const Chatbot = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [showTable, setShowTable] = useState(false);
   const [error, setError] = useState(null);
+  const [data, setData] = useState(null); // state to store fetched data
   const hasShownWelcomeRef = useRef(false); // Using a ref to track if the message has been shown
 
-useEffect(() => {
-  try {
-    // Load data and set loading state to false
-    setFilteredData(data.data);
-    setIsLoading(false);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // Fetch the JSON data dynamically from the public directory
+        const response = await fetch("/data/Data.json");
+        const result = await response.json();
 
-    // Add welcome message if it hasn't been shown yet
-    if (!hasShownWelcomeRef.current) {
-      addMessage("bot", "Welcome! How can I help you search the car sales data?");
-      hasShownWelcomeRef.current = true; // Update ref to indicate the message has been shown
-    }
-  } catch (err) {
-    console.error("Error loading data:", err); // Debugging log
-    setError("Failed to load data");
-    setIsLoading(false);
-  }
-}, []); // Depend on hasShownWelcome to ensure it's only called once
+        // Set the fetched data to the state
+        setData(result);
+
+        // Set loading state to false
+        setIsLoading(false);
+
+        // Filter data after loading it
+        setFilteredData(result.data || []);
+        
+        // Add welcome message if it hasn't been shown yet
+        if (!hasShownWelcomeRef.current) {
+          addMessage("bot", "Welcome! How can I help you search the car sales data?");
+          hasShownWelcomeRef.current = true; // Update ref to indicate the message has been shown
+        }
+      } catch (err) {
+        console.error("Error loading data:", err); // Debugging log
+        setError("Failed to load data");
+        setIsLoading(false);
+      }
+    };
+
+    fetchData(); // Call the fetchData function
+  }, []); // Empty dependency array ensures it runs only once
 
   // Helper function to add messages to chat
   const addMessage = (sender, text) => {
