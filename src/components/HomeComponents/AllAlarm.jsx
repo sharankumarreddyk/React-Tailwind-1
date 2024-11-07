@@ -23,7 +23,7 @@ const AllAlarm = () => {
         <div className="sm:flex justify-center md:space-x-2 items-center">
           <h2
             style={{ color: "#0F1C40" }}
-            className="md:text-xl text-lg md:pl-2 md:font-bold font-semibold"
+            className="md:text-xl text-lg md:pl-2 md:font-bold py-1 font-semibold"
           >
             All Alarms
           </h2>
@@ -47,7 +47,7 @@ const AllAlarm = () => {
           </div>
         </div>
 
-        <div className="flex md:space-x-6 space-x-1">
+        <div className="flex md:space-x-6  space-x-1">
           <Dropdown buttonText="Today" options={[]} isDateDropdown={true} customClass="right-0" />
 
           <button className="bg-[#0F1C40] justify-center  text-xs font-semibold text-center items-center text-white p-1 px-3 rounded-md">
