@@ -18,7 +18,7 @@ const Header = () => {
     { id: 2, text: 'Machines', href: '/Machines' },
     { id: 3, text: 'Orders', href: '/Orders' },
     { id: 4, text: 'Appointments', href: '/Appointments' },
-    { id: 5, text: 'Support', href: '/Support' },
+   
   ];
 
   return (
