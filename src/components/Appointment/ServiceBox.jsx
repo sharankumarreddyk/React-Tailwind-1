@@ -81,7 +81,7 @@ const ServiceBox = ({ activeService, onSelectService }) => {
     };
 
     return (
-        <div className="flex flex-col w-full bg-white rounded-lg overflow-auto lg:min-h-[1220px]">
+        <div className="flex flex-col w-full bg-white rounded-lg overflow-auto lg:min-h-[1140px]">
             <div className="flex-grow mt-0 ">
                 {services[activeService].map((service, index) => (
                     <div
