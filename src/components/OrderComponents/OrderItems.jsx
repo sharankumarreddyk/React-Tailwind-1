@@ -16,21 +16,21 @@ const OrderItem = ({
       <img
         src={imageSrc}
         alt={productName}
-        className="w-50 h-30 md:w-35  md:hidden object-cover  "
+        className="w-50 h-30 md:w-35  lg:hidden object-cover  "
       />
 
       <div
-        className="order-item relative flex items-center p-4 border-b border-gray-300 cursor-pointer"
+        className="order-item relative lg:flex items-center p-4 border-b border-gray-300 cursor-pointer"
         onClick={onClick}
       >
         {/* Image Section */}
         <img
           src={imageSrc}
           alt={productName}
-          className="w-[140px] h-[120px] object-fill sm:block hidden"
+          className="w-[140px] h-[120px] object-fill lg:block hidden"
         />
         {/* Product Details Section */}
-        <div className="order-details space-y-2 flex-grow ml-4  sm:min-h-[125px] text-nowrap">
+        <div className="order-details space-y-2 flex-grow ml-4 mt-4 lg:mt-0 sm:min-h-[125px] text-nowrap">
           <h4 className="text-[15px] lg:text-[28px] font-bold text-blue-950 md:text-2xl">
             {productName}
           </h4>
@@ -49,7 +49,7 @@ const OrderItem = ({
         </div>
 
         {/* Price Section */}
-        <div className="order-summary space-y-2 text-right text-nowrap">
+        <div className="order-summary space-y-2 lg:text-right pl-4  lg:pl-0 text-nowrap">
           <p className="text-xs lg:text-[10px] md:text-xl lg:mt-10 text-blue-950 font-semibold">
             Full Price
           </p>

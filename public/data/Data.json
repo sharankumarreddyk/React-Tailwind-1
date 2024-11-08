@@ -1,92 +1,256 @@
 {
-    "columns": [
-      { "title": "Month", "data": "month" },
-      { "title": "Car Model", "data": "carModel" },
-      { "title": "Car Variant", "data": "carVariant" },
-      { "title": "Fuel Type", "data": "fuelType" },
-      { "title": "Units Sold", "data": "unitsSold" },
-      { "title": "Unit Price ($)", "data": "unitPrice" },
-      { "title": "Total Revenue ($)", "data": "totalRevenue" },
-      { "title": "Sales Region", "data": "salesRegion" },
-      { "title": "Sales Rep", "data": "salesRep" },
-      { "title": "Sales Channel", "data": "salesChannel" }
-    ],
-    "data": [
-      {
-        "month": "January",
-        "carModel": "Honda Civic",
-        "carVariant": "2018 EX",
-        "fuelType": "Petrol",
-        "unitsSold": 12,
-        "unitPrice": 18000,
-        "totalRevenue": 216000,
-        "salesRegion": "California",
-        "salesRep": "Michael Johnson",
-        "salesChannel": "Dealership"
-      },
-      {
-        "month": "January",
-        "carModel": "Toyota Corolla",
-        "carVariant": "2017 LE",
-        "fuelType": "Hybrid",
-        "unitsSold": 8,
-        "unitPrice": 15000,
-        "totalRevenue": 120000,
-        "salesRegion": "Texas",
-        "salesRep": "Sarah Green",
-        "salesChannel": "Online"
-      },
-      {
-        "month": "February",
-        "carModel": "Ford F-150",
-        "carVariant": "2015 XLT",
-        "fuelType": "Diesel",
-        "unitsSold": 5,
-        "unitPrice": 22000,
-        "totalRevenue": 110000,
-        "salesRegion": "Florida",
-        "salesRep": "David Brown",
-        "salesChannel": "Dealership"
-      },
-      {
-        "month": "February",
-        "carModel": "Chevrolet Malibu",
-        "carVariant": "2016 LT",
-        "fuelType": "Petrol",
-        "unitsSold": 7,
-        "unitPrice": 13000,
-        "totalRevenue": 91000,
-        "salesRegion": "New York",
-        "salesRep": "Jessica White",
-        "salesChannel": "Online"
-      },
-      {
-        "month": "March",
-        "carModel": "Nissan Altima",
-        "carVariant": "2019 S",
-        "fuelType": "Petrol",
-        "unitsSold": 10,
-        "unitPrice": 20000,
-        "totalRevenue": 200000,
-        "salesRegion": "Illinois",
-        "salesRep": "Ryan Davis",
-        "salesChannel": "Dealership"
-      },
-      {
-        "month": "March",
-        "carModel": "BMW 3 Series",
-        "carVariant": "2014 328i",
-        "fuelType": "Diesel",
-        "unitsSold": 4,
-        "unitPrice": 25000,
-        "totalRevenue": 100000,
-        "salesRegion": "Nevada",
-        "salesRep": "Emily Martinez",
-        "salesChannel": "Dealership"
-      }
-    ]
-  }
-
-  
-
-  
+  "columns": [
+    { "title": "Month", "data": "month" },
+    { "title": "Car Model", "data": "carModel" },
+    { "title": "Car Variant", "data": "carVariant" },
+    { "title": "Fuel Type", "data": "fuelType" },
+    { "title": "Units Sold", "data": "unitsSold" },
+    { "title": "Unit Price ($)", "data": "unitPrice" },
+    { "title": "Total Revenue ($)", "data": "totalRevenue" },
+    { "title": "Sales Region", "data": "salesRegion" },
+    { "title": "Sales Rep", "data": "salesRep" },
+    { "title": "Sales Channel", "data": "salesChannel" }
+  ],
+  "data": [
+    {
+      "month": "January",
+      "carModel": "Honda Civic",
+      "carVariant": "2018 EX",
+      "fuelType": "Petrol",
+      "unitsSold": 12,
+      "unitPrice": 18000,
+      "totalRevenue": 216000,
+      "salesRegion": "California",
+      "salesRep": "Michael Johnson",
+      "salesChannel": "Dealership"
+    },
+    {
+      "month": "January",
+      "carModel": "Toyota Corolla",
+      "carVariant": "2017 LE",
+      "fuelType": "Hybrid",
+      "unitsSold": 8,
+      "unitPrice": 15000,
+      "totalRevenue": 120000,
+      "salesRegion": "Texas",
+      "salesRep": "Sarah Green",
+      "salesChannel": "Online"
+    },
+    {
+      "month": "February",
+      "carModel": "Ford F-150",
+      "carVariant": "2015 XLT",
+      "fuelType": "Diesel",
+      "unitsSold": 5,
+      "unitPrice": 22000,
+      "totalRevenue": 110000,
+      "salesRegion": "Florida",
+      "salesRep": "David Brown",
+      "salesChannel": "Dealership"
+    },
+    {
+      "month": "February",
+      "carModel": "Chevrolet Malibu",
+      "carVariant": "2016 LT",
+      "fuelType": "Petrol",
+      "unitsSold": 7,
+      "unitPrice": 13000,
+      "totalRevenue": 91000,
+      "salesRegion": "New York",
+      "salesRep": "Jessica White",
+      "salesChannel": "Online"
+    },
+    {
+      "month": "March",
+      "carModel": "Nissan Altima",
+      "carVariant": "2019 S",
+      "fuelType": "Petrol",
+      "unitsSold": 10,
+      "unitPrice": 20000,
+      "totalRevenue": 200000,
+      "salesRegion": "Illinois",
+      "salesRep": "Ryan Davis",
+      "salesChannel": "Dealership"
+    },
+    {
+      "month": "March",
+      "carModel": "BMW 3 Series",
+      "carVariant": "2014 328i",
+      "fuelType": "Diesel",
+      "unitsSold": 4,
+      "unitPrice": 25000,
+      "totalRevenue": 100000,
+      "salesRegion": "Nevada",
+      "salesRep": "Emily Martinez",
+      "salesChannel": "Dealership"
+    },
+    {
+      "month": "April",
+      "carModel": "Tesla Model 3",
+      "carVariant": "2021 Standard Plus",
+      "fuelType": "Electric",
+      "unitsSold": 15,
+      "unitPrice": 40000,
+      "totalRevenue": 600000,
+      "salesRegion": "California",
+      "salesRep": "Mark Taylor",
+      "salesChannel": "Online"
+    },
+    {
+      "month": "April",
+      "carModel": "Hyundai Sonata",
+      "carVariant": "2020 SE",
+      "fuelType": "Hybrid",
+      "unitsSold": 9,
+      "unitPrice": 23000,
+      "totalRevenue": 207000,
+      "salesRegion": "Florida",
+      "salesRep": "Olivia Brooks",
+      "salesChannel": "Dealership"
+    },
+    {
+      "month": "May",
+      "carModel": "Chevrolet Equinox",
+      "carVariant": "2018 LT",
+      "fuelType": "Petrol",
+      "unitsSold": 6,
+      "unitPrice": 28000,
+      "totalRevenue": 168000,
+      "salesRegion": "Texas",
+      "salesRep": "Robert King",
+      "salesChannel": "Online"
+    },
+    {
+      "month": "May",
+      "carModel": "Ford Mustang",
+      "carVariant": "2020 GT",
+      "fuelType": "Petrol",
+      "unitsSold": 11,
+      "unitPrice": 35000,
+      "totalRevenue": 385000,
+      "salesRegion": "Nevada",
+      "salesRep": "Sophia Lee",
+      "salesChannel": "Dealership"
+    },
+    {
+      "month": "June",
+      "carModel": "Audi A4",
+      "carVariant": "2019 Premium",
+      "fuelType": "Diesel",
+      "unitsSold": 4,
+      "unitPrice": 38000,
+      "totalRevenue": 152000,
+      "salesRegion": "New York",
+      "salesRep": "Jacob Clark",
+      "salesChannel": "Online"
+    },
+    {
+      "month": "June",
+      "carModel": "Mercedes-Benz C-Class",
+      "carVariant": "2018 C300",
+      "fuelType": "Petrol",
+      "unitsSold": 6,
+      "unitPrice": 45000,
+      "totalRevenue": 270000,
+      "salesRegion": "Illinois",
+      "salesRep": "Lily Adams",
+      "salesChannel": "Dealership"
+    },
+    {
+      "month": "July",
+      "carModel": "Mazda CX-5",
+      "carVariant": "2020 Touring",
+      "fuelType": "Petrol",
+      "unitsSold": 8,
+      "unitPrice": 32000,
+      "totalRevenue": 256000,
+      "salesRegion": "California",
+      "salesRep": "James Harris",
+      "salesChannel": "Online"
+    },
+    {
+      "month": "July",
+      "carModel": "Jeep Grand Cherokee",
+      "carVariant": "2019 Limited",
+      "fuelType": "Diesel",
+      "unitsSold": 5,
+      "unitPrice": 47000,
+      "totalRevenue": 235000,
+      "salesRegion": "Texas",
+      "salesRep": "Emily Clark",
+      "salesChannel": "Dealership"
+    },
+    {
+      "month": "August",
+      "carModel": "Kia Soul",
+      "carVariant": "2021 EX",
+      "fuelType": "Electric",
+      "unitsSold": 12,
+      "unitPrice": 29000,
+      "totalRevenue": 348000,
+      "salesRegion": "Nevada",
+      "salesRep": "Chris Evans",
+      "salesChannel": "Online"
+    },
+    {
+      "month": "August",
+      "carModel": "Subaru Outback",
+      "carVariant": "2020 Limited",
+      "fuelType": "Hybrid",
+      "unitsSold": 10,
+      "unitPrice": 35000,
+      "totalRevenue": 350000,
+      "salesRegion": "Florida",
+      "salesRep": "Amy Miller",
+      "salesChannel": "Dealership"
+    },
+    {
+      "month": "September",
+      "carModel": "Porsche Cayenne",
+      "carVariant": "2021 S",
+      "fuelType": "Petrol",
+      "unitsSold": 4,
+      "unitPrice": 80000,
+      "totalRevenue": 320000,
+      "salesRegion": "California",
+      "salesRep": "John Walker",
+      "salesChannel": "Dealership"
+    },
+    {
+      "month": "September",
+      "carModel": "Honda CR-V",
+      "carVariant": "2020 LX",
+      "fuelType": "Hybrid",
+      "unitsSold": 7,
+      "unitPrice": 28000,
+      "totalRevenue": 196000,
+      "salesRegion": "Illinois",
+      "salesRep": "Natalie Cooper",
+      "salesChannel": "Online"
+    },
+    {
+      "month": "October",
+      "carModel": "BMW X5",
+      "carVariant": "2019 xDrive40i",
+      "fuelType": "Diesel",
+      "unitsSold": 5,
+      "unitPrice": 65000,
+      "totalRevenue": 325000,
+      "salesRegion": "New York",
+      "salesRep": "Ethan Wilson",
+      "salesChannel": "Dealership"
+    },
+    {
+      "month": "October",
+      "carModel": "Audi Q7",
+      "carVariant": "2021 Premium",
+      "fuelType": "Petrol",
+      "unitsSold": 6,
+      "unitPrice": 75000,
+      "totalRevenue": 450000,
+      "salesRegion": "Texas",
+      "salesRep": "Grace Taylor",
+      "salesChannel": "Online"
+    }
+  ]
+}

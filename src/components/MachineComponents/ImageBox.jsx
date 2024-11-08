@@ -11,7 +11,7 @@ const ImageBox = ({ title, branch, location, time, imageSrc }) => {
 
   return (
     <div
-      className={`min-w-[286px] md:min-w-[259px] sm:min-w-[250px] border-2
+      className={`min-w-[286px] lg:min-w-[259px] sm:min-w-[230px] border-2
         ${title === "Double Belt Cooling" ? "border-[#FF3334]" : "border-[#008E28]"} 
         rounded-md p-4 md:p-4 sm:p-10 shadow-md bg-white relative`}
     >

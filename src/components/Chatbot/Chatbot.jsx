@@ -2,6 +2,11 @@ import React, { useState, useEffect, useRef } from "react";
 import { CSVLink } from "react-csv";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
+import { Line } from "react-chartjs-2";
+import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from "chart.js";
+
+// Register the necessary components for Chart.js
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 const Chatbot = () => {
   // State management
@@ -9,9 +14,12 @@ const Chatbot = () => {
   const [userInput, setUserInput] = useState("");
   const [filteredData, setFilteredData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [showTable, setShowTable] = useState(false);
+  const [showTable, setShowTable] = useState(false);  // Table visibility
   const [error, setError] = useState(null);
   const [data, setData] = useState(null); // state to store fetched data
+  const [showExportOptions, setShowExportOptions] = useState(false); // To show export options
+  const [exportFormat, setExportFormat] = useState(""); // Store the selected export format
+  const [showGraph, setShowGraph] = useState(false); // Always show graph by default
   const hasShownWelcomeRef = useRef(false); // Using a ref to track if the message has been shown
 
   useEffect(() => {
@@ -59,7 +67,7 @@ const Chatbot = () => {
         )
       );
       setFilteredData(filtered);
-      setShowTable(true);
+      setShowTable(true); // Show table after search
       addMessage("bot", `Found ${filtered.length} results for "${query}"`);
     } catch (err) {
       addMessage("bot", "Sorry, there was an error processing your search");
@@ -102,8 +110,28 @@ const Chatbot = () => {
     return <div className="max-w-4xl mx-auto p-4 text-red-500">{error}</div>;
   }
 
+  // Handle Export Format Selection
+  const handleExportSelect = (format) => {
+    setExportFormat(format);
+    setShowExportOptions(false); // Close the options dropdown after selection
+  };
+
+  // Chart data for "Show Graph" (Always uses full data)
+  const chartData = {
+    labels: data.data.map((item) => item["carModel"]), // X-axis: Car Models (entire dataset)
+    datasets: [
+      {
+        label: "Units Sold",
+        data: data.data.map((item) => item["unitsSold"]), // Y-axis: Units Sold (entire dataset)
+        fill: false,
+        borderColor: "rgb(75, 192, 192)",
+        tension: 0.1,
+      },
+    ],
+  };
+
   return (
-    <div className="max-w-4xl mx-auto p-4 min-h-90vh  space-y-4">
+    <div className="max-w-4xl mx-auto p-4 min-h-90vh space-y-4">
       <h1 className="text-5xl font-bold text-blue-950">Chat Bot:</h1>
       {/* Chat Messages */}
       <div className="h-96 overflow-y-auto border rounded-lg p-4 bg-white shadow-sm">
@@ -145,33 +173,58 @@ const Chatbot = () => {
       </form>
 
       {/* Export and View Controls */}
-      {filteredData.length > 0 && (
-        <div className="flex gap-2">
-          <button
-            onClick={() => setShowTable(!showTable)}
-            className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600 transition-colors shadow-sm"
-          >
-            {showTable ? "Hide Results" : "Show Results"}
-          </button>
-          <button
-            onClick={exportToPDF}
-            className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition-colors shadow-sm"
-          >
-            Export PDF
-          </button>
-          <CSVLink
-            data={filteredData}
-            headers={data.columns.map((col) => ({
-              label: col.title,
-              key: col.data,
-            }))}
-            filename="car-sales-data.csv"
-            className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition-colors shadow-sm"
-          >
-            Export CSV
-          </CSVLink>
-        </div>
-      )}
+      <div className="flex gap-2">
+        <button
+          onClick={() => {
+            setShowTable(!showTable);
+            if (showGraph) setShowGraph(false); // Hide graph when table is shown
+          }}
+          className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600 transition-colors shadow-sm"
+        >
+          {showTable ? "Hide Results" : "Show Results"}
+        </button>
+        <button
+          onClick={() => {
+            setShowGraph(!showGraph);
+            if (showTable) setShowTable(false); // Hide table when graph is shown
+          }}
+          className="px-4 py-2 bg-teal-500 text-white rounded hover:bg-teal-600 transition-colors shadow-sm"
+        >
+          {showGraph ? "Hide Graph" : "Show Graph"}
+        </button>
+
+        <button
+          onClick={() => setShowExportOptions(!showExportOptions)}
+          className="px-4 py-2 bg-yellow-500 text-white rounded hover:bg-yellow-600 transition-colors shadow-sm"
+        >
+          Export
+        </button>
+
+        {showExportOptions && (
+          <div className="absolute bg-white shadow-lg space-x-2  rounded sm:mt-10 sm:ml-52 p-2 space-y-2">
+            <button
+              onClick={() => {
+                handleExportSelect("pdf");
+                exportToPDF(); // Only export when clicked
+              }}
+              className="w-fit px-2 py-1 bg-red-500 text-white rounded hover:bg-red-600"
+            >
+              Export PDF
+            </button>
+            <CSVLink
+              data={data.data}
+              headers={data.columns.map((col) => ({
+                label: col.title,
+                key: col.data,
+              }))}
+              filename="car-sales-data.csv"
+              className="w-full px-2 py-1.5 bg-green-500 text-white rounded hover:bg-green-600"
+            >
+              Export CSV
+            </CSVLink>
+          </div>
+        )}
+      </div>
 
       {/* Results Table */}
       {showTable && filteredData.length > 0 && (
@@ -201,6 +254,13 @@ const Chatbot = () => {
               ))}
             </tbody>
           </table>
+        </div>
+      )}
+
+      {/* Show Graph */}
+      {showGraph && data && data.data.length > 0 && (
+        <div className="p-4">
+          <Line data={chartData} />
         </div>
       )}
     </div>

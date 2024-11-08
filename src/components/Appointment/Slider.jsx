@@ -148,7 +148,7 @@ const Slider = ({ selectedService }) => {
                                                 }}>
                                                     <button
                                                         onClick={handleCancelClick}
-                                                        className="absolute top-2 left-2 text-red-400 font-bold  ring-offset-1 rounded-full w-4 text-xs ring-red-400 ring-2 cursor-pointer"
+                                                        className="absolute top-2 left-2 text-gray-400 font-bold  ring-offset-1 rounded-full w-4 text-xs ring-gray-400 ring-2 cursor-pointer"
                                                     >
                                                         &times; {/* Cancel button */}
                                                     </button>

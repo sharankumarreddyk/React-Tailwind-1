@@ -31,7 +31,7 @@ const ParameterList = ({ activeButton }) => {
     <div className="flex text-sm flex-col space-y-2 mt-4">
       {parameters[activeButton].map((param, index) => (
         <div key={index} className="flex items-stretch">
-          <div className="w-[100px] md:w-1/4 text-xs md:text-sm font-bold bg-blue-950 text-white p-2 rounded-l-md flex items-center justify-between">
+          <div className="w-[100px] md:w-1/4 text-xs lg:text-sm font-bold bg-blue-950 text-white p-2 rounded-l-md flex items-center justify-between">
             {param}
           </div>
           <div className="w-3/4  text-xs md:text-sm  bg-gray-100 p-2 rounded-r-md flex items-center">

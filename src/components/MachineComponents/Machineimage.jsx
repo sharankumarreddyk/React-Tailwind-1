@@ -7,7 +7,7 @@ const ServiceBox = ({ title, temperature, param6, param7, unitRange, isDamaged, 
   <div
     className={`absolute bg-white border ${isDamaged ? "border-red-500" : "border-green-500"} rounded-md p-2 shadow-lg w-42 cursor-pointer z-10`}
   >
-    <button onClick={onClose} className="absolute top-1 right-1 text-red-400 font-bold  ring-offset-1 rounded-full w-4 text-xs ring-red-400 ring-2">X</button>
+    <button onClick={onClose} className="absolute top-1 right-1 text-gray-400 font-bold  ring-offset-1 rounded-full w-4 text-xs ring-gray-400 ring-2">X</button>
     <div className={`mt-3 ${isDamaged ? "text-red-500" : "text-blue-950"} font-bold text-md`}>
       {title}
     </div>

@@ -73,11 +73,14 @@ const MachineSlider = ({ selectedMachineIndex, setSelectedMachineIndex }) => {
       let scrollAmount;
       if (window.innerWidth < 640) { // For small screens
           scrollAmount = 300; // Adjust as needed
-      }  else { // For large screens
+      }else if (window.innerWidth < 1020) { 
+        scrollAmount = 265;} 
+       else { // For large screens
           scrollAmount = 290; // Default for large screens
       }
 
       const scrollValue = direction === "left" ? -scrollAmount : scrollAmount;
+      
       imageContainerRef.current.scrollBy({
         left: scrollValue,
         behavior: "smooth",
@@ -203,7 +206,7 @@ const MachineSlider = ({ selectedMachineIndex, setSelectedMachineIndex }) => {
         <div className="absolute right-0 top-1/2 transform -translate-y-1/2 z-20  sm:bg-white sm:py-40">
           <button
             onClick={() => scroll("right")}
-            className="justify-center font-bold text-center p-2 sm:p-3 px-2 sm:px-4 lg:px-2 rounded-md text-xs sm:text-sm lg:text-lg"
+            className="justify-center font-bold text-center p-2 sm:p-3 px-2 sm:px-2 lg:px-2 rounded-md text-xs sm:text-sm lg:text-lg"
           >
             <span className="material-symbols-outlined text-[#0F1C40] text-3xl sm:text-5xl">
               arrow_circle_right
