@@ -115,7 +115,7 @@ const Dropdown = ({ id, buttonText, options, isDateDropdown, customClass }) => {
       {isOpen && (
         <div
           id={id}
-          className={`absolute mt-6 sm:mt-2 bg-white border border-blue-950 rounded-md shadow-lg max-w-xs sm:max-w-none ${dropdownSize} ${customClass} max-h-60 overflow-y-auto scrollbar-hide`}
+          className={`absolute mt-6 sm:mt-2 bg-white border border-blue-950 rounded-md shadow-lg max-w-xs sm:max-w-none ${dropdownSize} ${customClass} max-h-60 overflow-y-hidden scrollbar-hide`}
           style={{
             scrollbarWidth: "none",
             msOverflowStyle: "none",
