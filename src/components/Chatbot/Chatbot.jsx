@@ -33,6 +33,8 @@ const Chatbot = () => {
   const [data, setData] = useState(null);
   const [showExportOptions, setShowExportOptions] = useState(false);
   const [showGraph, setShowGraph] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);  // Track current page
+  const [resultsPerPage] = useState(10);  // Number of results per page
   const hasShownWelcomeRef = useRef(false);
 
   useEffect(() => {
@@ -70,6 +72,7 @@ const Chatbot = () => {
     );
     setFilteredData(filtered);
     setShowTable(true);
+    setCurrentPage(1); // Reset to first page after a search
     addMessage("bot", `Found ${filtered.length} results for "${query}"`);
   };
 
@@ -86,6 +89,7 @@ const Chatbot = () => {
     setUserInput("");
     setFilteredData(data.data || []);
     setShowTable(false);
+    setCurrentPage(1); // Reset to first page when clearing the search
     addMessage("bot", "Search cleared.");
   };
 
@@ -98,6 +102,17 @@ const Chatbot = () => {
       ),
     });
     doc.save("car-sales-data.pdf");
+  };
+
+  const paginateData = () => {
+    // Calculate the indices for slicing the data array
+    const startIndex = (currentPage - 1) * resultsPerPage;
+    const endIndex = startIndex + resultsPerPage;
+    return filteredData.slice(startIndex, endIndex);
+  };
+
+  const handlePageChange = (newPage) => {
+    setCurrentPage(newPage);
   };
 
   if (isLoading) return <div>Loading...</div>;
@@ -152,6 +167,8 @@ const Chatbot = () => {
       },
     },
   };
+
+  const totalPages = Math.ceil(filteredData.length / resultsPerPage);
 
   return (
     <div className="max-w-4xl mx-auto p-4 min-h-screen space-y-4">
@@ -268,7 +285,7 @@ const Chatbot = () => {
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-              {filteredData.map((item, idx) => (
+              {paginateData().map((item, idx) => (
                 <tr key={idx} className="hover:bg-gray-50">
                   {data.columns.map((col) => (
                     <td key={col.data} className="px-6 py-4 whitespace-nowrap">
@@ -279,6 +296,39 @@ const Chatbot = () => {
               ))}
             </tbody>
           </table>
+
+          {/* Pagination Controls */}
+          <div className="flex justify-center mt-4 space-x-2">
+            <button
+              onClick={() => handlePageChange(1)}
+              disabled={currentPage === 1}
+              className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600 transition-colors"
+            >
+              First
+            </button>
+            <button
+              onClick={() => handlePageChange(currentPage - 1)}
+              disabled={currentPage === 1}
+              className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600 transition-colors"
+            >
+              Prev
+            </button>
+            <span className="px-4 py-2">{currentPage} / {totalPages}</span>
+            <button
+              onClick={() => handlePageChange(currentPage + 1)}
+              disabled={currentPage === totalPages}
+              className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600 transition-colors"
+            >
+              Next
+            </button>
+            <button
+              onClick={() => handlePageChange(totalPages)}
+              disabled={currentPage === totalPages}
+              className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600 transition-colors"
+            >
+              Last
+            </button>
+          </div>
         </div>
       )}
 
