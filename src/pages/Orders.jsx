@@ -148,7 +148,7 @@ const Orders = () => {
               ))}
             </div>
 
-            <div className="container px-4 pl-10 col-span-12 md:col-span-7 w-full min-h-[200px]">
+            <div className="container px-4 pl-8 ml-2 col-span-12 md:col-span-7 w-full min-h-[200px]">
               <div className="col-span-7 overflow-x-auto max-h-max p-[2px] bg-gradient-to-r from-[#008E28] via-[#008E28] to-[#D9D9D9] rounded-lg">
                 <div className="w-full h-full rounded-lg bg-white p-[2px]">
                   <OrderStatus bgColor={"bg-[#008E28]"} />
