@@ -2,13 +2,12 @@ import React, { useState, useEffect, useRef } from "react";
 import { CSVLink } from "react-csv";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
-import { Line } from "react-chartjs-2";
+import { Bar } from "react-chartjs-2";  // Import the Bar chart component from react-chartjs-2
 import {
   Chart as ChartJS,
   CategoryScale,
   LinearScale,
-  PointElement,
-  LineElement,
+  BarElement,  // Import BarElement
   Title,
   Tooltip,
   Legend,
@@ -18,8 +17,7 @@ import {
 ChartJS.register(
   CategoryScale,
   LinearScale,
-  PointElement,
-  LineElement,
+  BarElement,  // Register BarElement for Bar chart
   Title,
   Tooltip,
   Legend
@@ -84,6 +82,13 @@ const Chatbot = () => {
     }
   };
 
+  const clearSearch = () => {
+    setUserInput("");
+    setFilteredData(data.data || []);
+    setShowTable(false);
+    addMessage("bot", "Search cleared.");
+  };
+
   const exportToPDF = () => {
     const doc = new jsPDF();
     doc.autoTable({
@@ -105,9 +110,9 @@ const Chatbot = () => {
       {
         label: "Units Sold",
         data: data.data.map((item) => item["unitsSold"]),
-        fill: false,
+        backgroundColor: "rgba(75, 192, 192, 0.2)",  // Color of the bars
         borderColor: "rgb(75, 192, 192)",
-        tension: 0.1,
+        borderWidth: 1,
       },
     ],
   };
@@ -115,7 +120,7 @@ const Chatbot = () => {
   // Chart options
   const chartOptions = {
     responsive: true,
-    maintainAspectRatio: false, // Allow the chart to resize dynamically
+    maintainAspectRatio: false,
     plugins: {
       title: {
         display: true,
@@ -143,6 +148,7 @@ const Chatbot = () => {
           display: true,
           text: "Units Sold",
         },
+        beginAtZero: true,
       },
     },
   };
@@ -216,6 +222,13 @@ const Chatbot = () => {
         >
           Export
         </button>
+        {/* Clear Search Button */}
+        <button
+          onClick={clearSearch}
+          className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition-colors shadow-sm"
+        >
+          Clear Search
+        </button>
       </div>
 
       {/* Export Options */}
@@ -255,7 +268,7 @@ const Chatbot = () => {
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-            {filteredData.map((item, idx) => (
+              {filteredData.map((item, idx) => (
                 <tr key={idx} className="hover:bg-gray-50">
                   {data.columns.map((col) => (
                     <td key={col.data} className="px-6 py-4 whitespace-nowrap">
@@ -272,7 +285,7 @@ const Chatbot = () => {
       {/* Show Graph */}
       {showGraph && data && data.data.length > 0 && (
         <div className="p-4 w-full h-96">
-          <Line data={chartData} options={chartOptions} />
+          <Bar data={chartData} options={chartOptions} /> {/* Change to Bar chart */}
         </div>
       )}
     </div>
@@ -280,4 +293,3 @@ const Chatbot = () => {
 };
 
 export default Chatbot;
-
