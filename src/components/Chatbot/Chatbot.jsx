@@ -2,12 +2,12 @@ import React, { useState, useEffect, useRef } from "react";
 import { CSVLink } from "react-csv";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
-import { Bar } from "react-chartjs-2";  // Import the Bar chart component from react-chartjs-2
+import { Bar } from "react-chartjs-2";  
 import {
   Chart as ChartJS,
   CategoryScale,
   LinearScale,
-  BarElement,  // Import BarElement
+  BarElement,  
   Title,
   Tooltip,
   Legend,
@@ -17,7 +17,7 @@ import {
 ChartJS.register(
   CategoryScale,
   LinearScale,
-  BarElement,  // Register BarElement for Bar chart
+  BarElement,  
   Title,
   Tooltip,
   Legend
@@ -33,8 +33,8 @@ const Chatbot = () => {
   const [data, setData] = useState(null);
   const [showExportOptions, setShowExportOptions] = useState(false);
   const [showGraph, setShowGraph] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);  // Track current page
-  const [resultsPerPage] = useState(10);  // Number of results per page
+  const [currentPage, setCurrentPage] = useState(1);  
+  const [resultsPerPage] = useState(10);  
   const hasShownWelcomeRef = useRef(false);
 
   useEffect(() => {
@@ -72,7 +72,7 @@ const Chatbot = () => {
     );
     setFilteredData(filtered);
     setShowTable(true);
-    setCurrentPage(1); // Reset to first page after a search
+    setCurrentPage(1); 
     addMessage("bot", `Found ${filtered.length} results for "${query}"`);
   };
 
@@ -89,7 +89,7 @@ const Chatbot = () => {
     setUserInput("");
     setFilteredData(data.data || []);
     setShowTable(false);
-    setCurrentPage(1); // Reset to first page when clearing the search
+    setCurrentPage(1); 
     addMessage("bot", "Search cleared.");
   };
 
@@ -105,7 +105,6 @@ const Chatbot = () => {
   };
 
   const paginateData = () => {
-    // Calculate the indices for slicing the data array
     const startIndex = (currentPage - 1) * resultsPerPage;
     const endIndex = startIndex + resultsPerPage;
     return filteredData.slice(startIndex, endIndex);
@@ -125,7 +124,7 @@ const Chatbot = () => {
       {
         label: "Units Sold",
         data: data.data.map((item) => item["unitsSold"]),
-        backgroundColor: "rgba(75, 192, 192, 0.2)",  // Color of the bars
+        backgroundColor: "rgba(75, 192, 192, 0.2)",  
         borderColor: "rgb(75, 192, 192)",
         borderWidth: 1,
       },
@@ -169,6 +168,10 @@ const Chatbot = () => {
   };
 
   const totalPages = Math.ceil(filteredData.length / resultsPerPage);
+
+  // Calculate the current range of entries to display
+  const currentRangeStart = (currentPage - 1) * resultsPerPage + 1;
+  const currentRangeEnd = Math.min(currentPage * resultsPerPage, filteredData.length);
 
   return (
     <div className="max-w-4xl mx-auto p-4 min-h-screen space-y-4">
@@ -272,12 +275,12 @@ const Chatbot = () => {
       {showTable && filteredData.length > 0 && (
         <div className="overflow-x-auto border rounded-lg shadow-sm">
           <table className="min-w-full divide-y divide-gray-200">
-            <thead className="bg-gray-50">
+            <thead className="bg-blue-950">
               <tr>
                 {data.columns.map((col) => (
                   <th
                     key={col.data}
-                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider"
                   >
                     {col.title}
                   </th>
@@ -296,46 +299,61 @@ const Chatbot = () => {
               ))}
             </tbody>
           </table>
-
-          {/* Pagination Controls */}
-          <div className="flex justify-center mt-4 space-x-2">
-            <button
-              onClick={() => handlePageChange(1)}
-              disabled={currentPage === 1}
-              className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600 transition-colors"
-            >
-              First
-            </button>
-            <button
-              onClick={() => handlePageChange(currentPage - 1)}
-              disabled={currentPage === 1}
-              className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600 transition-colors"
-            >
-              Prev
-            </button>
-            <span className="px-4 py-2">{currentPage} / {totalPages}</span>
-            <button
-              onClick={() => handlePageChange(currentPage + 1)}
-              disabled={currentPage === totalPages}
-              className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600 transition-colors"
-            >
-              Next
-            </button>
-            <button
-              onClick={() => handlePageChange(totalPages)}
-              disabled={currentPage === totalPages}
-              className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600 transition-colors"
-            >
-              Last
-            </button>
-          </div>
         </div>
       )}
+
+      {/* Pagination Controls and Showing Range */}
+{showTable && (
+  <div className="flex justify-between mt-4 items-center">
+    <div className="text-sm">
+      Showing {currentRangeStart} to {currentRangeEnd} of {filteredData.length} entries
+    </div>
+    <div className="flex space-x-2">
+      <button
+        onClick={() => handlePageChange(1)}
+        disabled={currentPage === 1}
+        className="px-3 py-2 bg-blue-900 text-white rounded hover:bg-blue-300 transition-colors"
+      >
+        «
+      </button>
+      <button
+        onClick={() => handlePageChange(currentPage - 1)}
+        disabled={currentPage === 1}
+        className="px-3 py-2 bg-blue-900 text-white rounded hover:bg-blue-300 transition-colors"
+      >
+        ‹
+      </button>
+      {[...Array(totalPages)].map((_, idx) => (
+        <button
+          key={idx}
+          onClick={() => handlePageChange(idx + 1)}
+          className={`px-3 py-2 ${currentPage === idx + 1 ? 'bg-blue-700' : 'bg-blue-900'} text-white rounded hover:bg-blue-300 transition-colors`}
+        >
+          {idx + 1}
+        </button>
+      ))}
+      <button
+        onClick={() => handlePageChange(currentPage + 1)}
+        disabled={currentPage === totalPages}
+        className="px-3 py-2 bg-blue-900 text-white rounded hover:bg-blue-300 transition-colors"
+      >
+        ›
+      </button>
+      <button
+        onClick={() => handlePageChange(totalPages)}
+        disabled={currentPage === totalPages}
+        className="px-3 py-2 bg-blue-900 text-white rounded hover:bg-blue-300 transition-colors"
+      >
+        »
+      </button>
+    </div>
+  </div>
+)}
 
       {/* Show Graph */}
       {showGraph && data && data.data.length > 0 && (
         <div className="p-4 w-full h-96">
-          <Bar data={chartData} options={chartOptions} /> {/* Change to Bar chart */}
+          <Bar data={chartData} options={chartOptions} />
         </div>
       )}
     </div>
