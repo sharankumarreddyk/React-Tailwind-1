@@ -1,86 +1,133 @@
 import React from "react";
 
-const OrderItem = ({
-  imageSrc,
-  productName,
-  productDetails,
-  status,
-  paymentMethod,
-  price,
-  invoiceLink,
-  onClick,
-  selected,
-}) => {
+const OrderStatus = ({ bgColor }) => {
   return (
-    <article className="order-item-container">
-      {/* Mobile Image */}
-      <img
-        src={imageSrc}
-        alt={`Product: ${productName}`}
-        className="w-50 h-30 md:w-35 xl:hidden object-cover"
-      />
-
-      <div
-        className="order-item relative xl:flex items-center p-4 border-b border-gray-300 cursor-pointer hover:bg-gray-50"
-        onClick={onClick}
-        role="button"
-        tabIndex={0}
-      >
-        {/* Desktop Image */}
-        <img
-          src={imageSrc}
-          alt={`Product: ${productName}`}
-          className="hidden xl:block w-[140px] h-[120px] object-fill"
-        />
-
-        {/* Product Details */}
-        <div className="order-details space-y-2 flex-grow ml-4 mt-4 xl:mt-0 sm:min-h-[125px] text-nowrap">
-          <h4 className="text-[15px] lg:text-[28px] xl:text-[28px]  font-bold text-blue-950 md:text-2xl">
-            {productName}
-          </h4>
-          <h6 className="text-sm md:text-[16px] font-bold text-blue-950 mx-1">
-            {productDetails}
-          </h6>
-          <span className="inline-block bg-green-500 text-white px-2 py-1 rounded text-xs md:text-xs">
-            {status}
-          </span>
-          <div className="payment-info">
-            <p className="text-xs lg:text-[10px] md:text-sm mt-1 text-blue-950">
-              Payment:
-            </p>
-            <p className="text-xs lg:text-[20px] lg:font-thin md:text-sm text-blue-950">
-              {paymentMethod || "Card"}
-            </p>
+    <div className="col-span-7 bg-white overflow-x-auto xl:overflow-hidden  p-0">
+      {/* Progress Bar Container */}
+      <div className="min-w-[800px] xl:min-w-fit mb-2  h-full">
+        {/* Progress Bar Line */}
+        <div className="flex justify-between items-center relative p-3 px-10">
+          {/* Progress Circles */}
+          <div className="relative z-10 w-10 h-10 bg-[#008E28] text-white rounded-full flex items-center justify-center font-bold">
+            1
           </div>
-        </div>
-
-        {/* Price and Invoice */}
-        <div className="order-summary space-y-2 xl:text-right pl-4 xl:pl-0 text-nowrap">
-          <p className="text-xs lg:text-[10px] md:text-xl xl:mt-10 text-blue-950 font-semibold">
-            Full Price
-          </p>
-          <h3 className="text-xl md:text-2xl lg:text-[28px] text-blue-950 font-bold">
-            {price}
-          </h3>
-          <a
-            href={invoiceLink}
-            className="text-xs md:text-xs font-semibold hover:underline"
-            target="_blank"
-            rel="noopener noreferrer"
+          <div className="flex-1 h-1 bg-[#008E28]"></div>
+          <div className="relative z-10 w-10 h-10 bg-[#008E28] text-white rounded-full flex items-center justify-center font-bold">
+            2
+          </div>
+          <div className="flex-1 h-1 bg-[#008E28]"></div>
+          <div className="relative z-10 w-10 h-10 bg-[#008E28] text-white rounded-full flex items-center justify-center font-bold">
+            3
+          </div>
+          <div className="flex-1 h-1 bg-[#008E28]"></div>
+          <div className="relative z-10 w-10 h-10 bg-[#008E28] text-white rounded-full flex items-center justify-center font-bold">
+            4
+          </div>
+          <div className={`flex-1 h-1 ${bgColor}`}></div>
+          <div
+            className={`relative z-10 w-10 h-10  ${bgColor === "bg-[#008E28]" ? "text-white bg-[#008E28]" : "text-gray-400 bg-gray-300"}  rounded-full flex items-center justify-center font-bold`}
           >
-            Download Invoice
-          </a>
+            5
+          </div>
+          <div className={`flex-1 h-1 ${bgColor}`}></div>
+          <div className="relative z-10 w-10 h-10 bg-gray-300 text-gray-400 rounded-full flex items-center justify-center font-bold">
+            6
+          </div>
         </div>
 
-        {/* Selected Indicator */}
-        {selected && (
-          <div className="absolute top-0 right-0 text-blue-950 text-[15px] font-bold sm:mt-4 mr-3 lg:mr-0">
-            Selected
+        {/* Step Descriptions */}
+        <div className="grid grid-cols-6 gap-1 text-center">
+          {/* Step 1 */}
+          <div>
+            <p className="font-bold text-xs text-[#0F1C40]">Order Placed</p>
+            <p className="text-xs text-[#0F1C40]">Feb 12, 2024</p>
+            <ul className="text-[9px] list-disc list-inside text-[#0F1C40] mt-2 text-start px-1">
+              <li>Order processed</li>
+              <li className="text-left">Order status updated - 1</li>
+              <li className="text-left">Order status updated - 2</li>
+              <li className="text-left">Order status updated - 3</li>
+            </ul>
           </div>
-        )}
+
+          {/* Step 2 */}
+          <div>
+            <p className="font-bold text-xs text-[#0F1C40]">
+              Out from Workshop
+            </p>
+            <p className="text-xs text-[#0F1C40]">Feb 14, 2024</p>
+            <ul className="text-[9px] list-disc list-inside text-[#0F1C40] mt-2 text-start px-1">
+              <li>Order processed</li>
+              <li className="text-left">Order status updated - 1</li>
+              <li className="text-left">Order status updated - 2</li>
+              <li className="text-left">Order status updated - 3</li>
+            </ul>
+          </div>
+
+          {/* Step 3 */}
+          <div>
+            <p className="font-bold text-xs text-gray-700">Shipping Started</p>
+            <p className="text-xs text-[#0F1C40]">Feb 15, 2024</p>
+            <ul className="text-[9px] list-disc list-inside text-[#0F1C40] mt-2 text-start px-1">
+              <li>Order processed</li>
+              <li className="text-left">Order status updated - 1</li>
+              <li className="text-left">Order status updated - 2</li>
+              <li className="text-left">Order status updated - 3</li>
+            </ul>
+          </div>
+
+          {/* Step 4 */}
+          <div>
+            <p className="font-bold text-xs text-[#0F1C40]">Shipping Booked</p>
+            <p className="text-xs text-[#0F1C40]">Feb 16, 2024</p>
+            <ul className="text-[9px] list-disc list-inside text-[#0F1C40] mt-2 text-start px-1">
+              <li>Order processed</li>
+              <li className="text-left">Order status updated - 1</li>
+              <li className="text-left">Order status updated - 2</li>
+              <li className="text-left">Order status updated - 3</li>
+            </ul>
+          </div>
+
+          {/* Step 5 */}
+          <div>
+            <p
+              className={`font-bold text-xs ${bgColor === "bg-[#008E28]" ? "text-[#0F1C40]" : "text-gray-400"}`}
+            >
+              Shipped
+            </p>
+            <p
+              className={`text-xs ${bgColor === "bg-[#008E28]" ? "text-[#0F1C40]" : "text-[#D9D9D9]"}`}
+            >
+              Feb 18, 2024
+            </p>
+            <ul
+              className={`text-[9px] list-disc list-inside ${bgColor === "bg-[#008E28]" ? "text-[#0F1C40]" : "text-[#B4B4B4] opacity-90"} mt-2 text-start px-1 `}
+            >
+              <li>Order processed</li>
+              <li className="text-left">Order status updated - 1</li>
+              <li className="text-left">Order status updated - 2</li>
+              <li className="text-left">Order status updated - 3</li>
+            </ul>
+          </div>
+
+          {/* Step 6 */}
+          <div>
+            <p
+              className={`font-bold text-xs opacity-90 ${bgColor === "bg-[#008E28]" ? "text-gray-400" : "text-gray-400"}`}
+            >
+              Delivered
+            </p>
+            <p className="text-xs text-[#D9D9D9] opacity-90">Feb 20, 2024</p>
+            <ul className="text-[9px] list-disc list-inside text-[#B4B4B4] mt-2 text-start px-1 opacity-90 ">
+              <li>Order processed</li>
+              <li className="text-left">Order status updated - 1</li>
+              <li className="text-left">Order status updated - 2</li>
+              <li className="text-left">Order status updated - 3</li>
+            </ul>
+          </div>
+        </div>
       </div>
-    </article>
+    </div>
   );
 };
 
-export default OrderItem;
+export default OrderStatus;
