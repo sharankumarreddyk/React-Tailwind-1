@@ -35,6 +35,7 @@ const Chatbot = () => {
   const [showGraph, setShowGraph] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);  
   const [resultsPerPage] = useState(10);  
+  const [showNoResults, setShowNoResults] = useState(false);  // New state for showing no results message
   const hasShownWelcomeRef = useRef(false);
 
   useEffect(() => {
@@ -72,6 +73,7 @@ const Chatbot = () => {
     );
     setFilteredData(filtered);
     setShowTable(true);
+    setShowNoResults(filtered.length === 0); // Show "No results found" if there are no matches
     setCurrentPage(1); 
     addMessage("bot", `Found ${filtered.length} results for "${query}"`);
   };
@@ -89,6 +91,7 @@ const Chatbot = () => {
     setUserInput("");
     setFilteredData(data.data || []);
     setShowTable(false);
+    setShowNoResults(false); // Reset "No results found" message when clearing
     setCurrentPage(1); 
     addMessage("bot", "Search cleared.");
   };
@@ -272,83 +275,90 @@ const Chatbot = () => {
       )}
 
       {/* Results Table */}
-      {showTable && filteredData.length > 0 && (
-        <div className="overflow-x-auto border rounded-lg shadow-sm">
-          <table className="min-w-full divide-y divide-gray-200">
-            <thead className="bg-blue-950">
-              <tr>
-                {data.columns.map((col) => (
-                  <th
-                    key={col.data}
-                    className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider"
-                  >
-                    {col.title}
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
-              {paginateData().map((item, idx) => (
-                <tr key={idx} className="hover:bg-gray-50">
-                  {data.columns.map((col) => (
-                    <td key={col.data} className="px-6 py-4 whitespace-nowrap">
-                      {item[col.data]}
-                    </td>
+      {showTable && (
+        <>
+          {filteredData.length > 0 ? (
+            <div className="overflow-x-auto border rounded-lg shadow-sm">
+              <table className="min-w-full divide-y divide-gray-200">
+                <thead className="bg-blue-950">
+                  <tr>
+                    {data.columns.map((col) => (
+                      <th
+                        key={col.data}
+                        className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider"
+                      >
+                        {col.title}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody className="bg-white divide-y divide-gray-200">
+                  {paginateData().map((item, idx) => (
+                    <tr key={idx} className="hover:bg-gray-50">
+                      {data.columns.map((col) => (
+                        <td key={col.data} className="px-6 py-4 whitespace-nowrap">
+                          {item[col.data]}
+                        </td>
+                      ))}
+                    </tr>
                   ))}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+                </tbody>
+              </table>
+            </div>
+          ) : (
+            // Show this message when no results are available after search
+            <div className="text-center text-gray-500 py-4">No results found</div>
+          )}
+        </>
       )}
 
       {/* Pagination Controls and Showing Range */}
-{showTable && (
-  <div className="flex justify-between mt-4 items-center">
-    <div className="text-sm">
-      Showing {currentRangeStart} to {currentRangeEnd} of {filteredData.length} entries
-    </div>
-    <div className="flex space-x-2">
-      <button
-        onClick={() => handlePageChange(1)}
-        disabled={currentPage === 1}
-        className="px-3 py-2 bg-blue-900 text-white rounded hover:bg-blue-300 transition-colors"
-      >
-        «
-      </button>
-      <button
-        onClick={() => handlePageChange(currentPage - 1)}
-        disabled={currentPage === 1}
-        className="px-3 py-2 bg-blue-900 text-white rounded hover:bg-blue-300 transition-colors"
-      >
-        ‹
-      </button>
-      {[...Array(totalPages)].map((_, idx) => (
-        <button
-          key={idx}
-          onClick={() => handlePageChange(idx + 1)}
-          className={`px-3 py-2 ${currentPage === idx + 1 ? 'bg-blue-700' : 'bg-blue-900'} text-white rounded hover:bg-blue-300 transition-colors`}
-        >
-          {idx + 1}
-        </button>
-      ))}
-      <button
-        onClick={() => handlePageChange(currentPage + 1)}
-        disabled={currentPage === totalPages}
-        className="px-3 py-2 bg-blue-900 text-white rounded hover:bg-blue-300 transition-colors"
-      >
-        ›
-      </button>
-      <button
-        onClick={() => handlePageChange(totalPages)}
-        disabled={currentPage === totalPages}
-        className="px-3 py-2 bg-blue-900 text-white rounded hover:bg-blue-300 transition-colors"
-      >
-        »
-      </button>
-    </div>
-  </div>
-)}
+      {showTable && filteredData.length > 0 && (
+        <div className="flex justify-between mt-4 items-center">
+          <div className="text-sm">
+            Showing {currentRangeStart} to {currentRangeEnd} of {filteredData.length} entries
+          </div>
+          <div className="flex space-x-2">
+            <button
+              onClick={() => handlePageChange(1)}
+              disabled={currentPage === 1}
+              className="px-3 py-2 bg-blue-900 text-white rounded hover:bg-blue-300 transition-colors"
+            >
+              «
+            </button>
+            <button
+              onClick={() => handlePageChange(currentPage - 1)}
+              disabled={currentPage === 1}
+              className="px-3 py-2 bg-blue-900 text-white rounded hover:bg-blue-300 transition-colors"
+            >
+              ‹
+            </button>
+            {[...Array(totalPages)].map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => handlePageChange(idx + 1)}
+                className={`px-3 py-2 ${currentPage === idx + 1 ? 'bg-blue-700' : 'bg-blue-900'} text-white rounded hover:bg-blue-300 transition-colors`}
+              >
+                {idx + 1}
+              </button>
+            ))}
+            <button
+              onClick={() => handlePageChange(currentPage + 1)}
+              disabled={currentPage === totalPages}
+              className="px-3 py-2 bg-blue-900 text-white rounded hover:bg-blue-300 transition-colors"
+            >
+              ›
+            </button>
+            <button
+              onClick={() => handlePageChange(totalPages)}
+              disabled={currentPage === totalPages}
+              className="px-3 py-2 bg-blue-900 text-white rounded hover:bg-blue-300 transition-colors"
+            >
+              »
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* Show Graph */}
       {showGraph && data && data.data.length > 0 && (
