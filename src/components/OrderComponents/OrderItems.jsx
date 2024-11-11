@@ -31,7 +31,7 @@ const OrderItem = ({
         />
         {/* Product Details Section */}
         <div className="order-details space-y-2 flex-grow ml-4 mt-4 lg:mt-0 sm:min-h-[125px] text-nowrap">
-          <h4 className="text-[15px] lg:text-[28px] font-bold text-blue-950 md:text-2xl">
+          <h4 className="text-[15px] xl:text-[28px] lg:mt-2 font-bold text-blue-950 md:text-2xl">
             {productName}
           </h4>
           <h6 className="text-sm md:text-[16px] font-bold text-blue-950 mx-1">
