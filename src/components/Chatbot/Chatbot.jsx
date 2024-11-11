@@ -218,6 +218,26 @@ const Chatbot = () => {
         </button>
       </div>
 
+      {/* Export Options */}
+      {showExportOptions && (
+        <div className="flex gap-4 mt-4">
+          <CSVLink
+            data={filteredData}
+            headers={data.columns.map((col) => ({ label: col.title, key: col.data }))}
+            filename="car-sales-data.csv"
+            className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition-colors"
+          >
+            Export as CSV
+          </CSVLink>
+          <button
+            onClick={exportToPDF}
+            className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition-colors"
+          >
+            Export as PDF
+          </button>
+        </div>
+      )}
+
       {/* Results Table */}
       {showTable && filteredData.length > 0 && (
         <div className="overflow-x-auto border rounded-lg shadow-sm">
@@ -235,7 +255,7 @@ const Chatbot = () => {
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-              {filteredData.map((item, idx) => (
+            {filteredData.map((item, idx) => (
                 <tr key={idx} className="hover:bg-gray-50">
                   {data.columns.map((col) => (
                     <td key={col.data} className="px-6 py-4 whitespace-nowrap">
@@ -260,3 +280,4 @@ const Chatbot = () => {
 };
 
 export default Chatbot;
+
