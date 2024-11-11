@@ -130,7 +130,7 @@ const Orders = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-12 sm:mt-14 mt-10">
+          <div className="grid grid-cols-12  sm:mt-14 mt-10">
             <div className="col-span-12 md:col-span-5 xl:w-[547px] sm:px-8 shadow-lg">
               {filteredOrders.map((order, index) => (
                 <OrderItem
@@ -148,7 +148,7 @@ const Orders = () => {
               ))}
             </div>
 
-            <div className="container px-4 pl-8 col-span-12 md:col-span-7 w-full min-h-[200px]">
+            <div className="container px-4 pl-10 col-span-12 md:col-span-7 w-full min-h-[200px]">
               <div className="col-span-7 overflow-x-auto max-h-max p-[2px] bg-gradient-to-r from-[#008E28] via-[#008E28] to-[#D9D9D9] rounded-lg">
                 <div className="w-full h-full rounded-lg bg-white p-[2px]">
                   <OrderStatus bgColor={"bg-[#008E28]"} />
