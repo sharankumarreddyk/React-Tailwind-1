@@ -39,7 +39,8 @@ const UpcomingOrders = () => {
 
           <div className="col-span-7 overflow-x-auto max-h-max p-[2px] bg-gradient-to-r from-[#008E28] via-[#008E28] to-[#D9D9D9] rounded-lg">
             <div className="w-full h-full rounded-lg bg-white p-[2px]">
-              <OrderStatus bgColor={"bg-[#008E28]"} />
+            <OrderStatus bgColor1={"bg-gradient-to-r from-[#008E28] from-0% via-[#008E28] via-50% to-[#D9D9D9] to-50%"} bgColor={"bg-[#008E28]"} />
+
             </div>
           </div>
 

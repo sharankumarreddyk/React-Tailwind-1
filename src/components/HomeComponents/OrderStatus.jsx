@@ -1,6 +1,6 @@
 import React from "react";
 
-const OrderStatus = ({ bgColor }) => {
+const OrderStatus = ({ bgColor, bgColor1 }) => {
   return (
     <div className="col-span-7 bg-white overflow-x-auto xl:overflow-hidden  p-0">
       {/* Progress Bar Container */}
@@ -29,7 +29,7 @@ const OrderStatus = ({ bgColor }) => {
           >
             5
           </div>
-          <div className={`flex-1 h-1 ${bgColor}`}></div>
+          <div className={`flex-1 h-1 ${bgColor1 || bgColor}`}></div>
           <div className="relative z-10 w-10 h-10 bg-gray-300 text-gray-400 rounded-full flex items-center justify-center font-bold">
             6
           </div>
