@@ -9,6 +9,8 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import jsPDF from "jspdf";
+import "jspdf-autotable";
 
 // Register Chart.js components
 ChartJS.register(
@@ -97,7 +99,6 @@ const Chatbot = () => {
       setUserInput("");
     }
   };
-
   const clearSearch = () => {
     setMessages((prev) =>
       prev.filter((message) => message.text.includes("Welcome!"))
@@ -110,9 +111,43 @@ const Chatbot = () => {
     setTableSearchInput("");
   };
 
+  const exportToCSV = () => {
+    if (!data || !data.data) return;
+
+    const csvRows = [];
+    const headers = data.columns.map((col) => col.title);
+    csvRows.push(headers.join(","));
+
+    data.data.forEach((row) => {
+      const values = data.columns.map((col) => row[col.data]);
+      csvRows.push(values.join(","));
+    });
+
+    const csvContent = "data:text/csv;charset=utf-8," + csvRows.join("\n");
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", "car_sales_data.csv");
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   const exportToPDF = () => {
-    // You'll need to implement PDF export logic here
-    console.log("PDF export functionality needs to be implemented");
+    if (!data || !data.data) return;
+
+    const doc = new jsPDF();
+    const tableColumn = data.columns.map((col) => col.title);
+    const tableRows = [];
+
+    data.data.forEach((row) => {
+      const rowData = data.columns.map((col) => row[col.data]);
+      tableRows.push(rowData);
+    });
+
+    doc.autoTable(tableColumn, tableRows, { startY: 20 });
+    doc.text("Car Sales Data", 14, 15);
+    doc.save("car_sales_data.pdf");
   };
 
   const paginateData = () => {
@@ -362,7 +397,7 @@ const Chatbot = () => {
         {showExportOptions && (
           <div className="flex gap-4">
             <button
-              onClick={() => console.log("CSV export")}
+              onClick={exportToCSV}
               className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition-colors"
             >
               Export as CSV
