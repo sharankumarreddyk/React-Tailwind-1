@@ -38,6 +38,7 @@ const Chatbot = () => {
   const [tableSearchInput, setTableSearchInput] = useState("");
   const [sortOption, setSortOption] = useState("default");
   const hasShownWelcomeRef = useRef(false);
+  const [isSortDisabled, setIsSortDisabled] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -88,6 +89,8 @@ const Chatbot = () => {
     setShowTable(true);
     setShowNoResults(filtered.length === 0);
     setCurrentPage(1);
+    setSortOption("default"); // Reset sort
+    setIsSortDisabled(true); // Disable sort
     addMessage("bot", `Found ${filtered.length} results for "${query}"`);
   };
 
@@ -99,6 +102,7 @@ const Chatbot = () => {
       setUserInput("");
     }
   };
+
   const clearSearch = () => {
     setMessages((prev) =>
       prev.filter((message) => message.text.includes("Welcome!"))
@@ -109,6 +113,8 @@ const Chatbot = () => {
     setShowNoResults(false);
     setCurrentPage(1);
     setTableSearchInput("");
+    setSortOption("default");
+    setIsSortDisabled(false); // Re-enable sort
   };
 
   const exportToCSV = () => {
@@ -558,7 +564,12 @@ const Chatbot = () => {
                 id="sort"
                 value={sortOption}
                 onChange={handleSortChange}
-                className="p-2 border rounded shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                disabled={isSortDisabled}
+                className={`p-2 border rounded shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none ${
+                  isSortDisabled
+                    ? "opacity-50 bg-gray-100 cursor-not-allowed"
+                    : ""
+                }`}
               >
                 <option value="default">Default</option>
                 <option value="unitsSoldAsc">Units Sold (Ascending)</option>
