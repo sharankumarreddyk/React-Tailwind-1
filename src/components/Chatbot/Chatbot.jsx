@@ -11,6 +11,7 @@ import {
 } from "chart.js";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
+import TableComponent from "./TableComponent";
 
 // Register Chart.js components
 ChartJS.register(
@@ -428,136 +429,22 @@ const Chatbot = () => {
         {/* Results Table */}
         {showTable && (
           <div>
-            <div className="flex justify-between items-center  mt-10 mb-4  ">
-              <div className="relative flex gap-2">
-                <input
-                  type="text"
-                  value={tableSearchInput}
-                  onChange={handleTableSearchInput}
-                  placeholder="Search within results..."
-                  className="p-2 pl-3 pr-14 border rounded shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none w-full"
-                />
-                <button
-                  onClick={clearTableSearch}
-                  className="absolute right-2 top-1/2 transform -translate-y-1/2  py-1 px-2  text-gray-400 rounded-full ring-1 ring-gray-400 transition-colors text-sm "
-                >
-                  X
-                </button>
-              </div>
-
-              <div>
-                <label htmlFor="resultsPerPage" className="mr-2 min-w-">
-                  Show:
-                </label>
-                <select
-                  id="resultsPerPage"
-                  value={resultsPerPage}
-                  onChange={handleResultsPerPageChange}
-                  className="p-2 border rounded shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                >
-                  <option value={5}>5</option>
-                  <option value={10}>10</option>
-                  <option value={20}>20</option>
-                  <option value={50}>50</option>
-                </select>
-                <span className="ml-2">entries</span>
-              </div>
-            </div>
             <div className="overflow-x-auto border rounded-lg shadow-sm">
-              <table className="min-w-full divide-y divide-gray-200">
-                <thead className="bg-blue-950">
-                  <tr>
-                    {data.columns
-                      .filter((col) => col.data !== "monthlySales")
-                      .map((col) => (
-                        <th
-                          key={col.data}
-                          className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider"
-                        >
-                          {col.title}
-                        </th>
-                      ))}
-                  </tr>
-                </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
-                  {filteredData.length > 0 ? (
-                    paginateData().map((item, idx) => (
-                      <tr key={idx} className="hover:bg-gray-50">
-                        {data.columns
-                          .filter((col) => col.data !== "monthlySales")
-                          .map((col) => (
-                            <td
-                              key={col.data}
-                              className="px-6 py-4 whitespace-nowrap"
-                            >
-                              {item[col.data]}
-                            </td>
-                          ))}
-                      </tr>
-                    ))
-                  ) : (
-                    <tr>
-                      <td
-                        colSpan={data.columns.length}
-                        className="text-center py-4"
-                      >
-                        No results found
-                      </td>
-                    </tr>
-                  )}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        )}
-
-        {/* Pagination */}
-        {showTable && filteredData.length > 0 && (
-          <div className="flex justify-between items-center">
-            <div className="text-sm">
-              Showing {currentRangeStart} to {currentRangeEnd} of{" "}
-              {filteredData.length} entries
-            </div>
-            <div className="flex space-x-2">
-              <button
-                onClick={() => handlePageChange(1)}
-                disabled={currentPage === 1}
-                className="px-3 py-2 bg-blue-900 text-white rounded hover:bg-blue-300 transition-colors disabled:opacity-50"
-              >
-                «
-              </button>
-              <button
-                onClick={() => handlePageChange(currentPage - 1)}
-                disabled={currentPage === 1}
-                className="px-3 py-2 bg-blue-900 text-white rounded hover:bg-blue-300 transition-colors disabled:opacity-50"
-              >
-                ‹
-              </button>
-              {[...Array(totalPages)].map((_, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => handlePageChange(idx + 1)}
-                  className={`px-3 py-2 ${
-                    currentPage === idx + 1 ? "bg-blue-700" : "bg-blue-900"
-                  } text-white rounded hover:bg-blue-300 transition-colors`}
-                >
-                  {idx + 1}
-                </button>
-              ))}
-              <button
-                onClick={() => handlePageChange(currentPage + 1)}
-                disabled={currentPage === totalPages}
-                className="px-3 py-2 bg-blue-900 text-white rounded hover:bg-blue-300 transition-colors disabled:opacity-50"
-              >
-                ›
-              </button>
-              <button
-                onClick={() => handlePageChange(totalPages)}
-                disabled={currentPage === totalPages}
-                className="px-3 py-2 bg-blue-900 text-white rounded hover:bg-blue-300 transition-colors disabled:opacity-50"
-              >
-                »
-              </button>
+              <TableComponent
+                data={data}
+                filteredData={filteredData}
+                paginateData={paginateData}
+                tableSearchInput={tableSearchInput}
+                handleTableSearchInput={handleTableSearchInput}
+                clearTableSearch={clearTableSearch}
+                resultsPerPage={resultsPerPage}
+                handleResultsPerPageChange={handleResultsPerPageChange}
+                currentPage={currentPage}
+                handlePageChange={handlePageChange}
+                currentRangeStart={currentRangeStart}
+                currentRangeEnd={currentRangeEnd}
+                totalPages={totalPages}
+              />
             </div>
           </div>
         )}
