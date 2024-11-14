@@ -121,11 +121,15 @@ const Chatbot = () => {
     if (!data || !data.data) return;
 
     const csvRows = [];
-    const headers = data.columns.map((col) => col.title);
+    const headers = data.columns
+      .filter((col) => col.data !== "monthlySales")
+      .map((col) => col.title);
     csvRows.push(headers.join(","));
 
     data.data.forEach((row) => {
-      const values = data.columns.map((col) => row[col.data]);
+      const values = data.columns
+        .filter((col) => col.data !== "monthlySales")
+        .map((col) => row[col.data]);
       csvRows.push(values.join(","));
     });
 
@@ -143,11 +147,15 @@ const Chatbot = () => {
     if (!data || !data.data) return;
 
     const doc = new jsPDF();
-    const tableColumn = data.columns.map((col) => col.title);
+    const tableColumn = data.columns
+      .filter((col) => col.data !== "monthlySales")
+      .map((col) => col.title);
     const tableRows = [];
 
     data.data.forEach((row) => {
-      const rowData = data.columns.map((col) => row[col.data]);
+      const rowData = data.columns
+        .filter((col) => col.data !== "monthlySales")
+        .map((col) => row[col.data]);
       tableRows.push(rowData);
     });
 
@@ -421,21 +429,21 @@ const Chatbot = () => {
         {showTable && (
           <div>
             <div className="flex justify-between items-center  mt-10 mb-4  ">
-            <div className="relative flex gap-2">
-  <input
-    type="text"
-    value={tableSearchInput}
-    onChange={handleTableSearchInput}
-    placeholder="Search within results..."
-    className="p-2 pl-3 pr-14 border rounded shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none w-full"
-  />
-  <button
-    onClick={clearTableSearch}
-    className="absolute right-2 top-1/2 transform -translate-y-1/2  py-1 px-2  text-gray-400 rounded-full ring-1 ring-gray-400 transition-colors text-sm "
-  >
-    X
-  </button>
-</div>
+              <div className="relative flex gap-2">
+                <input
+                  type="text"
+                  value={tableSearchInput}
+                  onChange={handleTableSearchInput}
+                  placeholder="Search within results..."
+                  className="p-2 pl-3 pr-14 border rounded shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none w-full"
+                />
+                <button
+                  onClick={clearTableSearch}
+                  className="absolute right-2 top-1/2 transform -translate-y-1/2  py-1 px-2  text-gray-400 rounded-full ring-1 ring-gray-400 transition-colors text-sm "
+                >
+                  X
+                </button>
+              </div>
 
               <div>
                 <label htmlFor="resultsPerPage" className="mr-2 min-w-">
