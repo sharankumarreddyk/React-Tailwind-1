@@ -1,4 +1,3 @@
-// TableComponent.jsx
 import React, { useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import $ from "jquery";
@@ -43,6 +42,7 @@ const TableComponent = ({
         },
       },
     });
+    
 
     // Handle search input changes
     if (tableSearchInput) {
@@ -88,4 +88,4 @@ TableComponent.propTypes = {
   totalPages: PropTypes.number.isRequired,
 };
 
-export default TableComponent;
+export default TableComponent; 

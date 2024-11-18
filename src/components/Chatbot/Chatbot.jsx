@@ -209,17 +209,24 @@ const Chatbot = () => {
 
   const getSortedData = () => {
     if (!data || !data.data) return [];
-
+  
+    let sortedData = [...filteredData];
+  
     if (sortOption === "unitsSoldAsc") {
-      return [...filteredData].sort((a, b) => a.totalRevenue - b.totalRevenue);
+      
+      sortedData = sortedData.sort((a, b) => a.totalUnitsSold - b.totalUnitsSold);
     } else if (sortOption === "unitsSoldDesc") {
-      return [...filteredData].sort((a, b) => b.totalRevenue - a.totalRevenue);
+      
+      sortedData = sortedData.sort((a, b) => b.totalUnitsSold - a.totalUnitsSold);
     } else if (sortOption.startsWith("carModel")) {
+     
       const carModel = sortOption.split("-")[1];
-      return filteredData.filter((item) => item.carModel === carModel);
+      sortedData = sortedData.filter((item) => item.carModel === carModel);
     }
-    return filteredData;
+  
+    return sortedData;
   };
+  
 
   const getChartData = () => {
     const sortedData = getSortedData();
