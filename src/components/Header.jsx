@@ -27,7 +27,8 @@ const Header = () => {
         <div className="max-w-screen-xl md:h-20 lg:h-28 flex flex-wrap items-center justify-end p-4">
           {/* Mobile Menu Icon */}
           <div className="flex justify-center items-center md:hidden">
-            <button className="focus:outline-none ring-white focus:ring-2 p-2 rounded-lg">
+            <button onClick={handleCart} className="focus:outline-none ring-white focus:ring-2 p-2 rounded-lg">
+
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="20"
@@ -43,7 +44,7 @@ const Header = () => {
                 />
               </svg>
             </button>
-            <button className="focus:outline-none ring-white focus:ring-2 p-2 rounded-lg">
+            <button onClick={handleSearch} className="focus:outline-none ring-white focus:ring-2 p-2 rounded-lg">
               <IoMdSearch className="text-white text-2xl" />
             </button>
             <button
@@ -108,15 +109,15 @@ const Header = () => {
           </button>
           <button
             onClick={handleSearch}
-            className="focus:outline-none ring-white focus:ring-2 p-2 rounded-lg mr-3"
+            className="focus:outline-none  ring-white focus:ring-2 p-1 rounded-lg mr-3"
           >
             <IoMdSearch className="text-white md:text-2xl lg:text-4xl" />
           </button>
         </div>
       </nav>
       {searchOpen && (
-        <div className="fixed top-24 right-4 bg-white p-2 rounded-lg shadow-lg w-80 z-50">
-          <div className="relative">
+        <div className="absolute md:top-24 top-16 right-10 bg-white p-0.5 rounded-lg  w-80 ">
+          <div className="relative ">
             <input
               type="text"
               placeholder="Search..."
