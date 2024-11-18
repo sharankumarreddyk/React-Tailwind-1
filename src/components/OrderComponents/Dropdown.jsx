@@ -47,7 +47,7 @@ const Dropdown = ({ id, buttonText, options, isDateDropdown, customClass }) => {
   };
 
   return (
-    <div className="relative inline-block text-left w-full sm:w-auto z-50">
+    <div className="relative inline-block text-left w-full sm:w-auto z-10">
       <button
         id="dropdownButton"
         onClick={toggleDropdown}

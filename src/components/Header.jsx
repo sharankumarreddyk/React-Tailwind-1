@@ -116,7 +116,7 @@ const Header = () => {
         </div>
       </nav>
       {searchOpen && (
-        <div className="absolute md:top-24 top-16 right-10 bg-white p-0.5 rounded-lg  w-80 ">
+        <div className="absolute md:top-24 top-16 right-10 bg-white p-0.5 rounded-lg  w-80 z-20">
           <div className="relative ">
             <input
               type="text"
